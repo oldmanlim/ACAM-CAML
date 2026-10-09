@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAMS Study Companion (v6.53)</title>
+  <style>
+    :root {
+      --primary: #0a3d62;
+      --primary-hover: #082d49;
+      --secondary: #00a8ff;
+      --success: #2ed573;
+      --danger: #ff4757;
+      --warning: #ffa502;
+      --light-bg: #f4f6f9;
+      --card-bg: #ffffff;
+      --text: #2f3542;
+      --border: #e1e8ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--light-bg); color: var(--text); padding: 20px; line-height: 1.6; }
+    .container { max-width: 860px; margin: 0 auto; }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e272e);
+      color: white; padding: 22px 26px; border-radius: 12px; margin-bottom: 16px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 1.45rem; letter-spacing: -0.5px; }
+    header p { font-size: 0.85rem; opacity: 0.85; }
+
+    /* Nav Tabs */
+    .nav-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+    .tab-btn {
+      flex: 1; padding: 12px; font-size: 0.95rem; font-weight: 600; text-align: center;
+      background: white; border: 1px solid var(--border); border-radius: 8px; cursor: pointer;
+      color: #57606f; transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--primary); color: white; border-color: var(--primary);
+      box-shadow: 0 4px 8px rgba(10, 61, 98, 0.2);
+    }
+
+    .controls {
+      display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap;
+      background: white; padding: 14px; border-radius: 8px; border: 1px solid var(--border);
+    }
+    select, button {
+      padding: 9px 14px; border-radius: 6px; border: 1px solid var(--border);
+      background: white; font-size: 0.9rem; cursor: pointer;
+    }
+    button.btn-primary { background: var(--primary); color: white; border: none; font-weight: 600; }
+    button.btn-primary:hover { background: var(--primary-hover); }
+    button.btn-outline { background: transparent; border: 1px solid #ced6e0; color: #57606f; }
+    button.btn-outline:hover { background: #f1f2f6; }
+
+    .progress-bar-container {
+      width: 100%; height: 7px; background: #dfe4ea; border-radius: 4px;
+      margin-bottom: 18px; overflow: hidden;
+    }
+    .progress-bar { width: 0%; height: 100%; background: var(--secondary); transition: width 0.3s ease; }
+
+    .card {
+      background: var(--card-bg); border-radius: 12px; padding: 26px;
+      border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      margin-bottom: 20px;
+    }
+    .meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #747d8c; }
+    .badge { background: #ffeaa7; color: #2d3436; padding: 3px 9px; border-radius: 4px; font-size: 0.75rem; }
+    .badge-missed { background: #ff7675; color: white; }
+
+    .question-text { font-size: 1.15rem; font-weight: 600; margin-bottom: 20px; color: #1e272e; }
+
+    .options { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .option {
+      border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px;
+      cursor: pointer; display: flex; align-items: flex-start; gap: 12px; transition: all 0.15s ease;
+    }
+    .option:hover { background-color: #f1f2f6; }
+    .option input { margin-top: 5px; cursor: pointer; }
+    .option.selected { border-color: var(--secondary); background-color: #f0f9ff; }
+    .option.correct { border-color: var(--success); background-color: #edfcf2; }
+    .option.incorrect { border-color: var(--danger); background-color: #fff0f1; }
+
+    .explanation {
+      margin-top: 20px; padding: 16px; border-radius: 8px;
+      background-color: #f8f9fa; border-left: 4px solid var(--primary); font-size: 0.95rem;
+    }
+
+    .footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+    .hidden { display: none !important; }
+
+    /* Glossary Drill UI */
+    .glossary-prompt-box {
+      background: #f8f9fb; border-left: 5px solid var(--secondary);
+      padding: 18px; border-radius: 6px; margin-bottom: 22px; font-size: 1.05rem;
+    }
+    .stats-pill {
+      background: white; border: 1px solid var(--border); padding: 4px 10px;
+      border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <h1>CAMS Study Companion</h1>
+      <p>Study Guide Version 6.53</p>
+    </div>
+    <div id="header-stats">
+      <span class="stats-pill" id="missed-count-pill">Saved Missed: 0</span>
+    </div>
+  </header>
+
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" id="tab-quiz" onclick="switchTab('quiz')">📝 Scenario Question Bank</button>
+    <button class="tab-btn" id="tab-glossary" onclick="switchTab('glossary')">📖 Reverse Glossary Drill</button>
+  </div>
+
+  <!-- VIEW 1: QUESTION BANK -->
+  <div id="view-quiz">
+    <div class="controls">
+      <select id="domain-filter" onchange="filterQuestions()">
+        <option value="ALL">All Domains</option>
+        <option value="Risks and Methods">Risks and Methods (Ch. 1)</option>
+        <option value="International Standards">International Standards (Ch. 2)</option>
+        <option value="Compliance Programs">Compliance Programs (Ch. 3)</option>
+        <option value="Investigations">Investigations (Ch. 4)</option>
+        <option value="MISSED" id="opt-missed">🔁 Review Missed Questions (0)</option>
+      </select>
+      <select id="mode-selector" onchange="restartQuiz()">
+        <option value="practice">Practice Mode (Instant Feedback)</option>
+        <option value="exam">Mock Exam Mode (Score at End)</option>
+      </select>
+      <button class="btn-outline" onclick="clearMissedData()">Reset Missed Qs</button>
+      <button class="btn-primary" onclick="restartQuiz()">Restart Session</button>
+    </div>
+
+    <div class="progress-bar-container">
+      <div id="quiz-progress" class="progress-bar"></div>
+    </div>
+
+    <div id="quiz-card" class="card">
+      <div class="meta">
+        <span id="q-domain">Domain</span>
+        <span id="q-type" class="badge">Instruction</span>
+      </div>
+      <div id="q-text" class="question-text">Loading question...</div>
+      <div id="q-options" class="options"></div>
+
+      <div id="explanation" class="explanation hidden"></div>
+
+      <div class="footer-actions">
+        <span id="q-progress-text" style="font-size: 0.85rem; color: #747d8c;">Question 1 of X</span>
+        <button id="action-btn" class="btn-primary" onclick="handleQuizAction()">Submit Answer</button>
+      </div>
+    </div>
+
+    <div id="quiz-summary" class="card hidden" style="text-align: center; padding: 36px 20px;">
+      <h2 style="color: var(--primary); margin-bottom: 8px;">Review Completed!</h2>
+      <p id="final-stats" style="font-size: 1.15rem; margin: 15px 0;"></p>
+      <button class="btn-primary" onclick="restartQuiz()">Start Over</button>
+    </div>
+  </div>
+
+  <!-- VIEW 2: REVERSE GLOSSARY DRILL -->
+  <div id="view-glossary" class="hidden">
+    <div class="controls" style="justify-content: space-between; align-items: center;">
+      <div>
+        <span style="font-size: 0.9rem; font-weight: 600; color: #57606f;">Glossary Accuracy:</span>
+        <span id="glossary-score" class="stats-pill" style="margin-left: 8px;">0 / 0 (0%)</span>
+      </div>
+      <button class="btn-primary" onclick="loadNextGlossaryPrompt()">Next Term ➔</button>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <span>Identify the CAMS Official Term</span>
+        <span class="badge" style="background: #70a1ff; color: white;">Pages 400–433</span>
+      </div>
+      <p style="font-size: 0.85rem; color: #747d8c; margin-bottom: 6px;">DEFINITION:</p>
+      <div id="glossary-definition" class="glossary-prompt-box">Loading definition...</div>
+
+      <p style="font-size: 0.85rem; color: #747d8c; margin-bottom: 10px;">SELECT MATCHING TERM:</p>
+      <div id="glossary-options" class="options"></div>
+
+      <div id="glossary-explanation" class="explanation hidden"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// 1. DATA: QUESTION BANK
+// ==========================================
+const questionsData = [
+  {
+    id: 1,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "According to FATF Recommendation 16 (the 'Travel Rule'), what is the recommended de minimis threshold for cross-border wire transfers below which less stringent customer information requirements apply?",
+    options: [
+      "USD / EUR 500",
+      "USD / EUR 1,000",
+      "USD / EUR 3,000",
+      "USD / EUR 10,000"
+    ],
+    correct: [1],
+    explanation: "Reference Page 164: Countries may adopt a de minimis threshold for cross-border wire transfers (no higher than USD/EUR 1,000), below which financial institutions must at minimum include basic originator and beneficiary identifiers."
+  },
+  {
+    id: 2,
+    domain: "International Standards",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "Under Section 312 of the USA PATRIOT Act, which three circumstances mandate that a US financial institution apply statutory Enhanced Due Diligence (EDD) to a foreign correspondent account?",
+    options: [
+      "The foreign bank operates under an offshore banking license",
+      "The foreign bank is licensed by a jurisdiction designated as noncooperative in international AML efforts by an intergovernmental group concurred with by the US Treasury",
+      "The foreign bank is located in a European Union member state",
+      "The foreign bank operates under a license issued by a country subject to Section 311 special measures",
+      "The foreign bank maintains assets below USD 50 million"
+    ],
+    correct: [0, 1, 3],
+    explanation: "Reference Page 229: Under Section 312, EDD is mandatory if the foreign respondent bank operates under an offshore banking license, is designated noncooperative, or is from a country subject to Section 311 special measures."
+  },
+  {
+    id: 3,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "An exporter invoices commercial machinery at $10,000 when its actual open-market value is $100,000. Which Trade-Based Money Laundering (TBML) technique is being used, and what is the financial effect?",
+    options: [
+      "Overinvoicing; value is transferred from importer to exporter",
+      "Underinvoicing; value is transferred from exporter to importer",
+      "Ghost-shipping; no transfer of value takes place",
+      "Short-shipping; value is transferred from importer to exporter"
+    ],
+    correct: [1],
+    explanation: "Reference Page 103: Underinvoicing involves pricing goods significantly below market price. The seller/exporter transfers excess economic value ($90,000 difference) to the buyer/importer."
+  },
+  {
+    id: 4,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "Why do Payable-Through Accounts (PTAs) present heightened money laundering risks to a correspondent bank?",
+    options: [
+      "They can only be settled in cryptocurrencies",
+      "The respondent bank's customers can directly conduct transactions (e.g., writing checks and sending wires) through the correspondent account without prior clearing by the respondent bank",
+      "They require approval from the United Nations Security Council",
+      "They completely eliminate foreign exchange margins"
+    ],
+    correct: [1],
+    explanation: "Reference Page 29: PTAs differ from standard correspondent accounts because the respondent bank's customers have the ability to directly control funds and conduct transactions at the correspondent institution."
+  },
+  {
+    id: 5,
+    domain: "Compliance Programs",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "According to the Basel Committee guidelines on the Sound Management of Risks Related to Money Laundering, who forms the 'Third Line of Defense'?",
+    options: [
+      "Frontline client-facing associates and relationship managers",
+      "The Compliance Officer and transaction monitoring function",
+      "The independent internal and external audit function",
+      "The Board of Directors"
+    ],
+    correct: [2],
+    explanation: "Reference Page 185: 1st line = Line of business; 2nd line = AML compliance and internal control functions; 3rd line = The internal audit function, which reports to the Audit Committee of the Board."
+  },
+  {
+    id: 6,
+    domain: "Investigations",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "When law enforcement arrives at a financial institution to execute a search warrant, which two steps should the organization take?",
+    options: [
+      "Notify the client immediately so they can obtain legal defense",
+      "Review the warrant to understand its scope and contact in-house or outside legal counsel",
+      "Bar the agents from entering the building until a board meeting concludes",
+      "Remain present while agents conduct the search and maintain an inventory of all records seized",
+      "Hand over all unrelated records stored on the premises"
+    ],
+    correct: [1, 3],
+    explanation: "Reference Page 353: Staff should contact counsel, confirm the scope of the warrant, and accompany agents to maintain a precise inventory of what is seized. Notifying the client is illegal tipping off."
+  },
+  {
+    id: 7,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "What major change regarding physical cash payments was introduced under the European Union's Fourth Money Laundering Directive (4AMLD)?",
+    options: [
+      "The threshold for persons trading in goods was decreased from €15,000 to €10,000",
+      "The threshold for cash transactions was increased to €25,000",
+      "All physical cash payments between businesses were completely prohibited",
+      "Cash transactions above €1,000 were reclassified as securities"
+    ],
+    correct: [0],
+    explanation: "Reference Page 194: The Fourth Directive lowered the reporting/coverage threshold for persons trading in goods receiving or paying cash from €15,000 to €10,000."
+  },
+  {
+    id: 8,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "Under Section 319(b) of the USA PATRIOT Act, within what timeframe must a financial organization produce records related to foreign correspondent accounts upon request by a federal banking agency?",
+    options: [
+      "24 hours",
+      "120 hours (5 days)",
+      "10 business days",
+      "30 calendar days"
+    ],
+    correct: [1],
+    explanation: "Reference Page 233: Section 319(b) requires financial institutions to produce records within 120 hours (5 days) of a request by the appropriate federal banking agency."
+  }
+];
+
+// ==========================================
+// 2. DATA: REVERSE GLOSSARY BANK (Pgs 400–432)
+// ==========================================
+const glossaryData = [
+  {
+    term: "Benami account",
+    definition: "Also called a nominee account. Held by one person or entity on behalf of another, and commonly associated with the hawala underground banking system of the Indian subcontinent to disguise true identities.",
+    ref: "Page 404"
+  },
+  {
+    term: "Commission rogatoire",
+    definition: "Also known as letters rogatory. A written request for legal or judicial assistance sent by the central authority of one country to the central authority of another when seeking foreign evidence.",
+    ref: "Page 407"
+  },
+  {
+    term: "Bill stuffing",
+    definition: "A casino laundering technique where a customer inserts cash into slot machine bill acceptors, collects cash-out tickets with nominal or no play, and cashes out at the cage or requests a casino check.",
+    ref: "Page 405"
+  },
+  {
+    term: "Nesting",
+    definition: "The practice whereby a respondent bank provides downstream correspondent services to other financial institutions and processes those transactions through its own correspondent account.",
+    ref: "Page 421"
+  },
+  {
+    term: "Asset protection trusts (APTs)",
+    definition: "A special form of irrevocable trust usually created (settled) offshore for the principal purpose of preserving assets from creditors. Title is transferred to a foreign trustee to shield funds from home-country court orders.",
+    ref: "Page 401"
+  },
+  {
+    term: "Black Market Peso Exchange (BMPE)",
+    definition: "A complex trade-based money laundering method where Colombian peso brokers buy illicit US drug dollars in the US and sell checks or wires drawn on US accounts to legitimate importers to pay for goods.",
+    ref: "Page 405"
+  },
+  {
+    term: "Willful blindness",
+    definition: "A legal principle defined by courts as the 'deliberate avoidance of knowledge of the facts' or 'purposeful indifference,' held to be the legal equivalent of actual knowledge of illicit funds.",
+    ref: "Page 432"
+  },
+  {
+    term: "Safe harbor",
+    definition: "A legal provision that provides protection from civil or criminal liability for individuals or financial institutions that report suspicious transactions in good faith to an FIU.",
+    ref: "Page 426"
+  },
+  {
+    term: "Smurfing",
+    definition: "A common structuring technique involving the use of multiple individuals (runners) making cash deposits or purchasing monetary instruments in amounts under the reporting threshold across various locations.",
+    ref: "Page 427"
+  },
+  {
+    term: "Shell bank",
+    definition: "A bank that has no physical presence (i.e., meaningful mind and management with operating records) in the country where it is incorporated and licensed, and is not affiliated with a regulated financial group.",
+    ref: "Page 427"
+  },
+  {
+    term: "Concentration account",
+    definition: "An internal centralized bank account (also called an omnibus, suspense, or settlement account) used to aggregate and settle funds from multiple customers or locations, which can obscure audit trails if mismanaged.",
+    ref: "Page 407"
+  },
+  {
+    term: "Cash collateralized loan",
+    definition: "A loan in which cash deposits (often held in another jurisdiction or offshore secrecy haven) serve as the collateral, creating an appearance of legitimate loan funding while using illicit proceeds.",
+    ref: "Page 405"
+  }
+];
+
+// ==========================================
+// 3. STORAGE & MISSED QUESTIONS HELPERS
+// ==========================================
+const STORAGE_KEY = "cams_missed_q_ids";
+
+function getMissedQuestionIds() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveMissedQuestionId(id) {
+  let list = getMissedQuestionIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+  updateMissedUI();
+}
+
+function removeMissedQuestionId(id) {
+  let list = getMissedQuestionIds().filter(itemId => itemId !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  updateMissedUI();
+}
+
+function clearMissedData() {
+  if (confirm("Reset all saved missed questions?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    updateMissedUI();
+    filterQuestions();
+  }
+}
+
+function updateMissedUI() {
+  const count = getMissedQuestionIds().length;
+  document.getElementById("missed-count-pill").textContent = `Saved Missed: ${count}`;
+  document.getElementById("opt-missed").textContent = `🔁 Review Missed Questions (${count})`;
+}
+
+// ==========================================
+// 4. QUIZ ENGINE (VIEW 1)
+// ==========================================
+let filteredList = [...questionsData];
+let currentQIndex = 0;
+let userAnswers = {};
+let quizScore = 0;
+let isAnswerSubmitted = false;
+
+function filterQuestions() {
+  const selectedDomain = document.getElementById("domain-filter").value;
+  const missedIds = getMissedQuestionIds();
+
+  if (selectedDomain === "ALL") {
+    filteredList = [...questionsData];
+  } else if (selectedDomain === "MISSED") {
+    filteredList = questionsData.filter(q => missedIds.includes(q.id));
+  } else {
+    filteredList = questionsData.filter(q => q.domain === selectedDomain);
+  }
+  restartQuiz();
+}
+
+function restartQuiz() {
+  currentQIndex = 0;
+  userAnswers = {};
+  quizScore = 0;
+  isAnswerSubmitted = false;
+  document.getElementById("quiz-card").classList.remove("hidden");
+  document.getElementById("quiz-summary").classList.add("hidden");
+  loadQuestion(0);
+}
+
+function loadQuestion(index) {
+  if (filteredList.length === 0) {
+    document.getElementById("q-domain").textContent = "Empty";
+    document.getElementById("q-type").textContent = "-";
+    document.getElementById("q-text").textContent = "No questions found matching this filter.";
+    document.getElementById("q-options").innerHTML = "";
+    document.getElementById("action-btn").classList.add("hidden");
+    document.getElementById("explanation").classList.add("hidden");
+    document.getElementById("q-progress-text").textContent = "0 of 0";
+    document.getElementById("quiz-progress").style.width = "0%";
+    return;
+  }
+
+  isAnswerSubmitted = false;
+  document.getElementById("action-btn").classList.remove("hidden");
+  const q = filteredList[index];
+
+  const missedIds = getMissedQuestionIds();
+  const isMissed = missedIds.includes(q.id);
+
+  document.getElementById("q-domain").innerHTML = `${q.domain} ${isMissed ? '<span class="badge badge-missed" style="margin-left:6px;">Needs Review</span>' : ''}`;
+  document.getElementById("q-type").textContent = q.instruction;
+  document.getElementById("q-text").textContent = `${index + 1}. ${q.question}`;
+  document.getElementById("q-progress-text").textContent = `Question ${index + 1} of ${filteredList.length}`;
+  document.getElementById("quiz-progress").style.width = `${((index + 1) / filteredList.length) * 100}%`;
+
+  const explanationBox = document.getElementById("explanation");
+  explanationBox.classList.add("hidden");
+
+  const container = document.getElementById("q-options");
+  container.innerHTML = "";
+
+  const inputType = q.type === "multiple" ? "checkbox" : "radio";
+
+  q.options.forEach((opt, idx) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.id = `opt-${idx}`;
+
+    const input = document.createElement("input");
+    input.type = inputType;
+    input.name = "quiz-radio";
+    input.value = idx;
+
+    div.addEventListener("click", () => {
+      if (isAnswerSubmitted && document.getElementById("mode-selector").value === "practice") return;
+      if (q.type === "single") {
+        document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
+        div.classList.add("selected");
+        input.checked = true;
+      } else {
+        input.checked = !input.checked;
+        div.classList.toggle("selected", input.checked);
+      }
+    });
+
+    const label = document.createElement("label");
+    label.textContent = opt;
+    label.style.cursor = "pointer";
+
+    div.appendChild(input);
+    div.appendChild(label);
+    container.appendChild(div);
+  });
+
+  const mode = document.getElementById("mode-selector").value;
+  const btn = document.getElementById("action-btn");
+  btn.textContent = (mode === "practice") ? "Submit Answer" : (index === filteredList.length - 1 ? "Finish Exam" : "Next Question");
+}
+
+function handleQuizAction() {
+  const q = filteredList[currentQIndex];
+  const mode = document.getElementById("mode-selector").value;
+
+  const checkedNodes = Array.from(document.querySelectorAll('input[name="quiz-radio"]:checked'));
+  const selected = checkedNodes.map(n => parseInt(n.value)).sort();
+
+  if (selected.length === 0) {
+    alert("Please select your answer(s) first.");
+    return;
+  }
+
+  userAnswers[currentQIndex] = selected;
+
+  if (mode === "practice") {
+    if (!isAnswerSubmitted) {
+      isAnswerSubmitted = true;
+      const isCorrect = arraysMatch(selected, q.correct);
+
+      if (isCorrect) {
+        quizScore++;
+        // If reviewing missed items, remove from missed list upon correct answer
+        if (getMissedQuestionIds().includes(q.id)) {
+          removeMissedQuestionId(q.id);
+        }
+      } else {
+        saveMissedQuestionId(q.id);
+      }
+
+      // Visual styling
+      q.options.forEach((_, idx) => {
+        const el = document.getElementById(`opt-${idx}`);
+        if (q.correct.includes(idx)) el.classList.add("correct");
+        else if (selected.includes(idx)) el.classList.add("incorrect");
+      });
+
+      const exp = document.getElementById("explanation");
+      exp.innerHTML = `<strong>${isCorrect ? "✅ Correct!" : "❌ Incorrect"}</strong><br>${q.explanation}`;
+      exp.classList.remove("hidden");
+
+      const btn = document.getElementById("action-btn");
+      btn.textContent = (currentQIndex === filteredList.length - 1) ? "View Summary" : "Next Question ➔";
+    } else {
+      nextQuizQuestion();
+    }
+  } else {
+    nextQuizQuestion();
+  }
+}
+
+function nextQuizQuestion() {
+  if (currentQIndex < filteredList.length - 1) {
+    currentQIndex++;
+    loadQuestion(currentQIndex);
+  } else {
+    showQuizSummary();
+  }
+}
+
+function showQuizSummary() {
+  const mode = document.getElementById("mode-selector").value;
+  if (mode === "exam") {
+    quizScore = 0;
+    filteredList.forEach((q, idx) => {
+      const ans = userAnswers[idx] || [];
+      if (arraysMatch(ans, q.correct)) {
+        quizScore++;
+        removeMissedQuestionId(q.id);
+      } else {
+        saveMissedQuestionId(q.id);
+      }
+    });
+  }
+
+  document.getElementById("quiz-card").classList.add("hidden");
+  const sum = document.getElementById("quiz-summary");
+  sum.classList.remove("hidden");
+
+  const pct = Math.round((quizScore / filteredList.length) * 100);
+  const pass = pct >= 75 ? "PASSED (ACAMS Target ≥ 75%)" : "NEEDS PRACTICE (< 75%)";
+  document.getElementById("final-stats").innerHTML = `
+    <strong>Score: ${quizScore} / ${filteredList.length} (${pct}%)</strong><br>
+    <span style="color: ${pct >= 75 ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${pass}</span>
+  `;
+}
+
+function arraysMatch(a, b) {
+  if (a.length !== b.length) return false;
+  return a.every((val, i) => val === b[i]);
+}
+
+// ==========================================
+// 5. REVERSE GLOSSARY ENGINE (VIEW 2)
+// ==========================================
+let currentGlossaryTarget = null;
+let glossaryTotal = 0;
+let glossaryCorrect = 0;
+let glossaryAnswered = false;
+
+function loadNextGlossaryPrompt() {
+  glossaryAnswered = false;
+  document.getElementById("glossary-explanation").classList.add("hidden");
+
+  // Pick random definition
+  const randIndex = Math.floor(Math.random() * glossaryData.length);
+  currentGlossaryTarget = glossaryData[randIndex];
+
+  document.getElementById("glossary-definition").textContent = `"${currentGlossaryTarget.definition}"`;
+
+  // Pick 3 distractors
+  let options = [currentGlossaryTarget.term];
+  while (options.length < 4) {
+    const distractor = glossaryData[Math.floor(Math.random() * glossaryData.length)].term;
+    if (!options.includes(distractor)) options.push(distractor);
+  }
+  options.sort(() => Math.random() - 0.5); // Shuffle
+
+  const container = document.getElementById("glossary-options");
+  container.innerHTML = "";
+
+  options.forEach(optTerm => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.textContent = optTerm;
+
+    div.addEventListener("click", () => {
+      if (glossaryAnswered) return;
+      glossaryAnswered = true;
+      glossaryTotal++;
+
+      const isRight = (optTerm === currentGlossaryTarget.term);
+      if (isRight) {
+        div.classList.add("correct");
+        glossaryCorrect++;
+      } else {
+        div.classList.add("incorrect");
+        // Highlight correct option
+        Array.from(container.children).forEach(child => {
+          if (child.textContent === currentGlossaryTarget.term) child.classList.add("correct");
+        });
+      }
+
+      // Show explanation
+      const exp = document.getElementById("glossary-explanation");
+      exp.innerHTML = `<strong>${isRight ? "✅ Spot On!" : "❌ Correct Term:" + " " + currentGlossaryTarget.term}</strong><br>Reference: ${currentGlossaryTarget.ref} in CAMS Study Guide.`;
+      exp.classList.remove("hidden");
+
+      // Update stat pill
+      const pct = Math.round((glossaryCorrect / glossaryTotal) * 100);
+      document.getElementById("glossary-score").textContent = `${glossaryCorrect} / ${glossaryTotal} (${pct}%)`;
+    });
+
+    container.appendChild(div);
+  });
+}
+
+// ==========================================
+// 6. TABS NAVIGATION
+// ==========================================
+function switchTab(tab) {
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  if (tab === "quiz") {
+    document.getElementById("tab-quiz").classList.add("active");
+    document.getElementById("view-quiz").classList.remove("hidden");
+    document.getElementById("view-glossary").classList.add("hidden");
+  } else {
+    document.getElementById("tab-glossary").classList.add("active");
+    document.getElementById("view-quiz").classList.add("hidden");
+    document.getElementById("view-glossary").classList.remove("hidden");
+    if (!currentGlossaryTarget) loadNextGlossaryPrompt();
+  }
+}
+
+// Init
+window.onload = () => {
+  updateMissedUI();
+  filterQuestions();
+};
+</script>
+</body>
+</html>
