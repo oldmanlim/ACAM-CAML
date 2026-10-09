@@ -31,7 +31,6 @@
     header h1 { font-size: 1.45rem; letter-spacing: -0.5px; }
     header p { font-size: 0.85rem; opacity: 0.85; }
 
-    /* Nav Tabs */
     .nav-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
     .tab-btn {
       flex: 1; padding: 12px; font-size: 0.95rem; font-weight: 600; text-align: center;
@@ -92,7 +91,6 @@
     .footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
     .hidden { display: none !important; }
 
-    /* Glossary Drill UI */
     .glossary-prompt-box {
       background: #f8f9fb; border-left: 5px solid var(--secondary);
       padding: 18px; border-radius: 6px; margin-bottom: 22px; font-size: 1.05rem;
@@ -116,7 +114,6 @@
     </div>
   </header>
 
-  <!-- NAV TABS -->
   <div class="nav-tabs">
     <button class="tab-btn active" id="tab-quiz" onclick="switchTab('quiz')">📝 Scenario Question Bank</button>
     <button class="tab-btn" id="tab-glossary" onclick="switchTab('glossary')">📖 Reverse Glossary Drill</button>
@@ -196,7 +193,7 @@
 
 <script>
 // ==========================================
-// 1. DATA: QUESTION BANK
+// 1. DATA: QUESTION BANK (44 QUESTIONS)
 // ==========================================
 const questionsData = [
   {
@@ -414,481 +411,465 @@ const questionsData = [
     explanation: "Reference Pages 291 & 372: Regulators require that business interests never take precedence over compliance obligations. While filing a SAR does not create an automatic legal obligation to close an account immediately, the bank must follow documented account closure procedures, evaluating the severity of the conduct, repeat SAR history, and reputational risk. Disclosing the SAR is illegal (tipping off)."
   },
   {
-"id": 15,
-"domain": "Risks and Methods",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "An investigator at a commercial bank notes that a corporate customer operating a textile import/export business regularly receives wire transfers from a third-party logistics firm in a foreign Free Trade Zone. The trade documentation indicates that the invoiced shipment value of basic cotton T-shirts is $450 per unit, while the market value is $10 per unit. Which trade-based money laundering technique is being demonstrated, and what is its primary operational effect?",
-"options": [
-"Short-shipping; value is extracted from the importing country because excess physical goods were supplied without billing",
-"Overinvoicing; value is transferred from the foreign importer/buyer to the domestic exporter/seller",
-"Underinvoicing; value is transferred from the seller to the buyer because the goods are sold below market value",
-"Ghost-shipping; value is transferred without any physical movement of goods using fraudulent customs clearances"
-],
-"correct": [
-1
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1, 'Trade-Based Money Laundering' (pp. 102-103). Overinvoicing involves billing goods or services at a price higher than fair market value so that the exporter receives excess value from the buyer. In this scenario, invoicing basic cotton shirts at $450 each allows excess funds to be legally transferred to the seller under the guise of legitimate trade."
-},
-{
-"id": 16,
-"domain": "Compliance Programs",
-"type": "multiple",
-"instruction": "Select TWO answers",
-"question": "A multinational financial group operating headquartered in the United States maintains a retail banking subsidiary in a foreign jurisdiction. The host country's local privacy laws strictly prohibit the cross-border sharing of customer account transaction details with external entities, including foreign parent institutions. What TWO steps should the group compliance officer take to reconcile this legal conflict?",
-"options": [
-"Immediately terminate all customer accounts in the host branch to eliminate enterprise compliance risk",
-"Apply the higher corporate AML standard globally to the extent permitted by the host country's local laws",
-"Inform the local host regulator and home country supervisor of the legal conflict preventing full group-wide data sharing",
-"Instruct the local compliance officer to bypass local privacy laws under the principle of extraterritoriality",
-"File a Suspicious Activity Report (SAR) on the host government for obstructing an international investigation"
-],
-"correct": [
-1,
-2
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 2 'FATF 40 Recommendations' (p. 165) & Chapter 3 'AML/CFT Program' (pp. 261-266, 308). When branch or subsidiary standards differ between home and host countries, institutions must apply the higher/stricter standard to the extent that local host laws permit. If host country laws prohibit compliance with the higher standard (e.g., severe legal restrictions on data sharing), the institution must inform its supervisors and apply appropriate supplemental measures to manage the risk."
-},
-{
-"id": 17,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A compliance officer receives a formal, written request from a senior law enforcement agent requesting that the bank keep an account open while an active drug trafficking investigation is being conducted. The account has triggered multiple severe automated AML alerts for cash structuring. What should the compliance officer do FIRST?",
-"options": [
-"Immediately freeze all funds in the account and notify the customer that law enforcement is inspecting their transactions",
-"File an immediate Suspicious Activity Report (SAR) and close the account to avoid institution exposure to criminal liability",
-"Verify that the keep-open request is documented in writing, signed by an authorized official, and specifies the duration of the request",
-"Comply with the request verbally and refrain from filing any future SARs on the account for the duration of the investigation"
-],
-"correct": [
-2
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 4, 'Conducting and Responding to Investigations' (pp. 372-373). Law enforcement may request that a financial institution maintain an account open during an ongoing investigation. However, the compliance officer must ensure the request is in writing, issued by an authorized agency, and clearly specifies the timeframe. The bank maintains its independent legal obligation to monitor and file SARs on continuing suspicious activity."
-},
-{
-"id": 18,
-"domain": "Risks and Methods",
-"type": "multiple",
-"instruction": "Select THREE answers",
-"question": "An AML compliance investigator is reviewing the gaming logs of a high-value customer at a major casino. Which THREE customer behaviors represent distinct red flags indicating potential money laundering through the casino cashier's cage or floor?",
-"options": [
-"Redeeming a large quantity of casino chips for a casino check after engaging in minimal or nominal gaming activity",
-"Inserting high numbers of small-denomination bills into slot machines without gaming and requesting a payout voucher",
-"Using a single credit card to purchase chips and cashing out remaining winnings at the end of the night via wire transfer back to the same credit card account",
-"Establishing a line of credit, purchasing chips, playing minimally, paying off the credit line in cash, and requesting a check for the remaining chips",
-"Consistently betting both sides of an even bet (e.g., betting both red and black in roulette) across colluding accounts"
-],
-"correct": [
-0,
-1,
-3
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1, 'Casinos' (pp. 67-69, 80-81). Minimal gaming after converting cash/credit into chips or slot machine vouchers ('bill stuffing') to obtain a clean casino check or large-denomination cash is a primary casino laundering red flag. Paying off markers/credit lines in cash following minimal play is also a key indicator."
-},
-{
-"id": 19,
-"domain": "International Standards",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "Under the Basel Committee on Banking Supervision's guidelines on Sound Management of Risks Related to Money Laundering and Financing of Terrorism, which body or function constitutes the 'second line of defense' within a bank's internal risk control framework?",
-"options": [
-"The business line personnel and front-office customer onboarding staff",
-"The independent external auditor and regulatory bank examination teams",
-"The board of directors and executive leadership committee",
-"The chief AML compliance officer, internal control functions, and human resources"
-],
-"correct": [
-3
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 2, 'The Basel Committee on Banking Supervision' (pp. 184-185). The Basel Committee defines three lines of defense: (1) Line of business / front office, (2) Chief AML officer, compliance function, and internal control functions (as well as HR/IT), and (3) Internal audit function."
-},
-{
-"id": 20,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A bank compliance officer identifies clear evidence of internal fraud and potential money laundering involving a senior vice president of private banking. The officer determines that a Suspicious Activity Report (SAR) must be filed. While preparing the filing, the bank receives a grand jury subpoena demanding all transaction records for the senior officer's accounts. What action must the compliance officer strictly avoid?",
-"options": [
-"Disclosing to the senior vice president or any non-authorized employee that a SAR is being filed or that a subpoena was received",
-"Providing the underlying transactional documents requested by the grand jury subpoena to law enforcement authorities",
-"Notifying the board of directors' audit committee regarding the internal employee misconduct",
-"Filing the SAR with the national Financial Intelligence Unit (FIU) within the legally prescribed filing deadline"
-],
-"correct": [
-0
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 4, 'Suspicious Activity Reporting' & 'Tipping Off' (pp. 85, 166, 367-370). Strict anti-tipping-off rules prohibit disclosing the existence or intent to file a SAR to the subject of the report or any unauthorized third party. Disclosing this to the senior vice president violates federal/international anti-tipping laws and exposes the officer and bank to severe criminal penalties."
-},
-{
-"id": 21,
-"domain": "Risks and Methods",
-"type": "multiple",
-"instruction": "Select TWO answers",
-"question": "A compliance analyst is reviewing an account held by a corporate customer. The analyst suspects the customer is utilizing a 'funnel account' architecture to launder illicit cash proceeds. Which TWO operational characteristics strongly support this suspicion?",
-"options": [
-"Multiple cash deposits made in amounts just below currency reporting thresholds at bank branches in geographic locations far removed from the primary business location",
-"Rapid withdrawal or transfer of funds from the centralized account almost immediately after multiple fragmented deposits occur",
-"Frequent international wire transfers originating from well-known foreign central banks with high interest yield payouts",
-"Exclusive use of preprinted deposit slips with fully verified corporate tax identification details",
-"Long periods of account dormancy followed by a single lump-sum check deposit from an escrow agent"
-],
-"correct": [
-0,
-1
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1, 'Funnel Accounts' (pp. 27, 104-105). A funnel account exploits branch networks by receiving multiple structured cash deposits in geographically diverse locations away from the main business, followed by rapid withdrawal or wire transfer out of the account shortly thereafter."
-},
-{
-"id": 22,
-"domain": "Compliance Programs",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "An institutional broker-dealer is onboarding a new foreign corporate client located in a offshore financial center. The corporate documentation indicates that the entity's equity is represented entirely by bearer shares. Which risk mitigation measure is most appropriate under FATF Recommendations?",
-"options": [
-"Open the brokerage account immediately, provided the entity executes a self-declaration promising not to trade securities",
-"Rely entirely on the foreign company formation agent's written representation regarding the identity of the directors",
-"Ensure the bearer shares are dematerialized or immobilized with a recognized custodian, or identify all beneficial owners holding control thresholds",
-"Waive Enhanced Due Diligence (EDD) if the company was incorporated more than ten years ago as a shelf company"
-],
-"correct": [
-2
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1 'Bearer Shares' (p. 127) & Chapter 2 'FATF Recommendations' (pp. 160, 168). Bearer shares hide ownership because title passes with physical possession. FATF Recommendations require institutions to mitigate bearer share risks by requiring them to be immobilized, dematerialized, converted to registered shares, or by continually identifying ultimate beneficial owners."
-},
-{
-"id": 23,
-"domain": "International Standards",
-"type": "multiple",
-"instruction": "Select TWO answers",
-"question": "According to the FATF 40 Recommendations, which TWO obligations apply specifically to financial institutions when conducting Enhanced Due Diligence (EDD) on foreign Politically Exposed Persons (PEPs)?",
-"options": [
-"Obtain senior management approval before establishing or continuing the business relationship",
-"Automatically freeze all incoming and outgoing international wire transfers linked to the foreign PEP",
-"Take reasonable measures to establish the source of wealth and source of funds of the customer and beneficial owner",
-"File a mandatory Suspicious Activity Report (SAR) upon opening any account for a foreign PEP regardless of activity",
-"Require the foreign PEP to execute a legally binding waiver of legal immunity in local jurisdiction court"
-],
-"correct": [
-0,
-2
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1 'PEPs' (pp. 37-38) & Chapter 2 'FATF Recommendation 12' (p. 165). For foreign PEPs, FATF requires institutions to (1) obtain senior management approval for establishing/continuing the relationship, (2) take reasonable measures to establish source of wealth and source of funds, and (3) conduct enhanced ongoing monitoring."
-},
-{
-"id": 24,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "During a ongoing transaction monitoring investigation, an AML analyst discovers a series of suspicious wire transfers linked to a prospective commercial borrower. Before the analyst can complete the internal narrative report, the bank's commercial loan unit approves and disburses a $2 million credit facility to the customer. What should the AML officer do FIRST?",
-"options": [
-"Unilaterally cancel the loan contract and seize the remaining disbursed funds in the customer's checking account",
-"Complete the internal investigation, determine whether suspicious activity reporting criteria are met, and file a SAR accordingly",
-"Contact the borrower directly to inform them that the loan proceeds are under active financial crime investigation",
-"Notify the local press to mitigate the institution's exposure to severe public reputational damage"
-],
-"correct": [
-1
-],
-"explanation": "Reference Page/Section: CAMS Study Guide v6.53, Chapter 4, 'SAR Decision-Making Process' (pp. 348, 367-368). The compliance officer must follow the established internal investigation process to gather facts, evaluate transaction patterns, and determine if a SAR is required. Unilateral asset seizure or contact with the customer (tipping off) is improper and violates operational and legal requirements."
-},
+    id: 15,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "An investigator at a commercial bank notes that a corporate customer operating a textile import/export business regularly receives wire transfers from a third-party logistics firm in a foreign Free Trade Zone. The trade documentation indicates that the invoiced shipment value of basic cotton T-shirts is $450 per unit, while the market value is $10 per unit. Which trade-based money laundering technique is being demonstrated, and what is its primary operational effect?",
+    options: [
+      "Short-shipping; value is extracted from the importing country because excess physical goods were supplied without billing",
+      "Overinvoicing; value is transferred from the foreign importer/buyer to the domestic exporter/seller",
+      "Underinvoicing; value is transferred from the seller to the buyer because the goods are sold below market value",
+      "Ghost-shipping; value is transferred without any physical movement of goods using fraudulent customs clearances"
+    ],
+    correct: [1],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1, 'Trade-Based Money Laundering' (pp. 102-103). Overinvoicing involves billing goods or services at a price higher than fair market value so that the exporter receives excess value from the buyer. In this scenario, invoicing basic cotton shirts at $450 each allows excess funds to be legally transferred to the seller under the guise of legitimate trade."
+  },
   {
-"id": 25,
-"domain": "Risks and Methods",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A compliance officer at an international bank in Antwerp notices that a commercial diamond trading client regularly receives incoming wire transfers from offshore shell entities that significantly exceed the fair market value of the rough stones declared on customs documents. When questioned, the customer provides amended invoices showing arbitrarily inflated valuations and claims the transactions reflect specialized dealer premiums. Which trade-based money laundering (TBML) technique is being executed, and what is its primary financial mechanism?",
-"options": [
-"Ghost-shipping, wherein documentation is created for nonexistent cargo to justify foreign exchange remittances.",
-"Overinvoicing, wherein goods are invoiced above fair market value to transfer excess capital to the seller/exporter.",
-"Underinvoicing, wherein goods are invoiced below fair market value to transfer economic wealth to the foreign buyer/importer.",
-"Short-shipping, wherein the exporter invoices full quantities but ships fewer units to generate untaxed cash reserves."
-],
-"correct": [1],
-"explanation": "Reference Pages 102–103 & 340: Overinvoicing occurs when goods or services are invoiced at a price above fair market value, enabling the exporter (seller) to receive excess value from the buyer. Unexplained price increases and mismatched customs values are classic indicators of TBML."
-},
-{
-"id": 26,
-"domain": "Risks and Methods",
-"type": "multiple",
-"instruction": "Select THREE answers",
-"question": "A private banking relationship manager in Zurich is conducting onboarding for a high-net-worth client residing in South America. The prospective customer insists on structuring the account under an International Business Corporation (IBC) incorporated in a Caribbean secrecy haven. The entity issues bearer shares, uses corporate nominee directors supplied by a trust company, and requests that the bank hold all physical correspondence under a 'hold mail' agreement. Which THREE factors in this arrangement present the greatest money laundering vulnerability to the financial institution?",
-"options": [
-"The institution's inability to settle outgoing payments via retail automated clearing house (ACH) batches.",
-"The utilization of bearer shares, which allow ownership and control to be transferred via physical possession without any central corporate registry.",
-"The interposition of nominee directors in an offshore secrecy jurisdiction, which obscures the ultimate beneficial owner (UBO) from compliance scrutiny.",
-"The legal requirement that all offshore trusts maintain audited financial statements with host regulators.",
-"The reliance on a 'hold mail' agreement, which suppresses transaction statements and impedes ongoing customer communication."
-],
-"correct": [1, 2, 4],
-"explanation": "Reference Pages 35, 47–48, & 126–127: Bearer shares (which transfer equity title by physical possession), nominee directors/IBCs (which conceal true UBOs), and 'hold mail' services (which prevent bank documentation from reaching the customer's domicile) are major vulnerabilities routinely abused by illicit actors to prevent transparency in private banking."
-},
-{
-"id": 27,
-"domain": "Risks and Methods",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A transaction monitoring alert flags a series of wallet transfers involving a customer of a regulated virtual asset service provider (VASP). An investigation reveals that the customer regularly receives cryptocurrency from peer-to-peer unhosted wallets, immediately routes the assets through an online mixing service (tumbler) to sever the transaction history on the blockchain, and splits the outputs across decentralized applications (DApps) before converting them to fiat currency. At which stage of the money laundering cycle is the mixing and decentralized routing primarily functioning?",
-"options": [
-"Placement",
-"Smurfing",
-"Integration",
-"Layering"
-],
-correct: [3],
-"explanation": "Reference Pages 6, 18, & 118–122: The layering stage involves separating illicit proceeds from their source through complex webs of financial transactions designed to disguise the audit trail and provide anonymity. Tumblers/mixers and multi-protocol DApp movements are digital layering tools that obscure fund origins."
-},
-{
-"id": 28,
-"domain": "Risks and Methods",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A high-stakes patron at a land-based casino buys $90,000 in gaming chips using cash at the cashier cage. After placing a few conservative wagers totaling $400 over a twenty-minute period, the patron returns to the cage, redeems the remaining $89,600 in chips, and insists that the cashier issue a casino check made payable to an unrelated third-party commercial holding company. What should the casino AML officer do FIRST upon being alerted by the cage supervisor?",
-"options": [
-"Refuse the request to issue the third-party check, review the patron's buy-in and gaming activity, and evaluate the transaction for potential SAR filing.",
-"Instruct the cashier to fulfill the wire immediately to avoid a confrontational breach of customer service protocols.",
-"Confront the patron on the casino floor and demand that they sign an affidavit disclosing their ultimate source of wealth.",
-"Contact municipal law enforcement immediately to arrest the patron on charges of microstructuring."
-],
-correct: [0],
-"explanation": "Reference Pages 66–69 & 80–81: Minimal gaming followed by a request to convert cash buy-ins into casino checks or transfers to third parties is a classic casino money laundering typology. The compliance officer must prevent the sanitization of funds, examine the customer's full transaction profile, and initiate an internal suspicious activity investigation. Confronting the patron risks tipping off, and calling police to arrest without substantiation is improper."
-},
-{
-"id": 29,
-"domain": "Risks and Methods",
-"type": "multiple",
-"instruction": "Select TWO answers",
-"question": "An AML investigator examines a business checking account belonging to a small retail boutique. Over a three-week window, the account receives twenty-five cash deposits ranging from $800 to 900) to evade detection. Funnel accounts exploit branch networks by receiving cash deposits in diverse geographic areas and making rapid withdrawals in distant locations."
-},
-{
-"id": 30,
-"domain": "International Standards",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A commercial bank is reviewing customer onboarding guidelines to ensure adherence to FATF Recommendation 10. The compliance department needs to specify the conditions under which Customer Due Diligence (CDD) is mandatory under the FATF standard. In which of the following scenarios is the bank NOT strictly required by FATF Recommendation 10 to perform CDD?",
-"options": [
-"When opening an ongoing deposit account or establishing a formal commercial banking relationship.",
-"When the institution has doubts regarding the veracity or adequacy of previously obtained customer identification data.",
-"When carrying out an occasional cross-border financial transaction totaling USD/EUR 18,000.",
-"When processing an occasional domestic one-off wire transfer of USD/EUR 600 where there is no suspicion of money laundering or terrorist financing."
-],
-correct: [3],
-"explanation": "Reference Pages 164 & 176: Under FATF Recommendation 10, CDD is mandatory when: (1) establishing business relationships, (2) carrying out occasional transactions above USD/EUR 15,000, (3) carrying out wire transfers in circumstances covered by Recommendation 16 (exceeding USD/EUR 1,000), (4) there is suspicion of ML/TF, or (5) there are doubts regarding prior ID data. An occasional non-suspicious domestic transfer of $600 falls below the mandatory CDD thresholds."
-},
-{
-"id": 31,
-"domain": "International Standards",
-"type": "multiple",
-"instruction": "Select THREE answers",
-"question": "The US Secretary of the Treasury, having consulted with the Secretary of State and the Attorney General, designates a foreign financial institution as a 'primary money laundering concern' under Section 311 of the USA PATRIOT Act. Which THREE of the following actions can the Treasury mandate US financial institutions to execute under Section 311 special measures?",
-"options": [
-"Require US banks to keep records and file reports on specific financial transactions involving the designated institution, including participant and beneficial ownership details.",
-"Require US banks to collect information on the beneficial ownership of any account opened or maintained in the US by or on behalf of a foreign person associated with the designee.",
-"Direct the Financial Industry Regulatory Authority (FINRA) to revoke the charter of all domestic retail broker-dealers holding correspondent ties with the region.",
-"Prohibit or condition the opening or maintaining of correspondent or payable-through accounts for the designated foreign financial institution.",
-"Require that foreign supervisory authorities immediately extradite the designated institution's senior management to the United States."
-],
-correct: [0, 1, 3],
-"explanation": "Reference Pages 227–228: Section 311 provides five specific special measures: (1) recordkeeping/reporting on transactions, (2) obtaining beneficial ownership information on accounts, (3) identifying customers permitted to use payable-through accounts, (4) identifying customers using correspondent accounts, and (5) prohibiting or conditioning the maintenance of correspondent or payable-through accounts. It does not empower extrajudicial extradition or arbitrary revocation of domestic broker-dealer charters."
-},
-{
-"id": 32,
-"domain": "International Standards",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A multinational financial institution operating across the European Union is updating its criminal compliance policies to incorporate the Sixth Anti-Money Laundering Directive (6AMLD) and its complementary Criminal Law Directive (Directive 2018/1673). What major development was codified regarding corporate accountability under this framework?",
-"options": [
-"Exemption of corporate entities from legal culpability if their nominated MLRO had less than five years of industry experience.",
-"Establishment of a harmonized list of 22 predicate offenses and the extension of criminal liability and sanctions directly to legal persons (corporate entities).",
-"Restriction of money laundering criminal prosecution exclusively to natural persons, shielding corporate charters from judicial dissolution.",
-"Limitation of criminal predicate offenses exclusively to drug trafficking as defined under the 1988 Vienna Convention."
-],
-correct: [1],
-"explanation": "Reference Pages 198–201 & 213: The 6AMLD, complemented by Directive 2018/1673, harmonized criminalization across the EU by setting a comprehensive list of 22 predicate offenses (including cybercrime and environmental crime) and explicitly extended criminal liability to legal persons (corporations), subjecting entities to fines, disqualifications, and judicial winding-up."
-},
-{
-"id": 33,
-"domain": "International Standards",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A global banking group headquartered in Frankfurt maintains a retail branch in a host jurisdiction where local banking secrecy laws permit institutions to verify beneficial ownership only at a 25% ownership threshold. Group-wide policy established at the head office mandates customer verification down to a 10% threshold. Local legislation in the host jurisdiction does not prohibit the collection of 10% beneficial ownership information. According to Basel Committee and FATF consolidated group standards, which action must the branch take?",
-"options": [
-"Adopt the host country's 25% threshold to eliminate operational differences with domestic peer institutions.",
-"Request a formal exemption from the home-country supervisory authority to adhere solely to the host jurisdiction's local rules.",
-"Apply the head office's stricter 10% beneficial ownership standard across the host-country branch.",
-"Discontinue all commercial lending operations in the host jurisdiction while maintaining retail accounts."
-],
-correct: [2],
-"explanation": "Reference Pages 183 & 308–309: Basel Committee and FATF standards dictate that branches and subsidiaries of a financial group must apply the higher of the two standards between home and host country requirements. If host-country laws do not prohibit compliance with the stricter home-country standard, the higher standard must be enforced globally."
-},
-{
-"id": 34,
-"domain": "International Standards",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "Under FATF Recommendation 16 (the 'Travel Rule') as extended to virtual assets and Virtual Asset Service Providers (VASPs), what is the primary obligation of an originating VASP when initiating a qualifying virtual asset transfer to another VASP?",
-"options": [
-"Obtain and hold accurate originator and required beneficiary information, and submit that information immediately and securely to the beneficiary VASP or institution.",
-"Convert the virtual asset into a fiat currency equivalent before clearing the transaction across external blockchains.",
-"Transmit the private cryptographic keys of both wallet counterparties to the local Financial Intelligence Unit (FIU).",
-"Withhold the transfer for a mandatory 48-hour quarantine to perform independent blockchain analytics."
-],
-correct: [0],
-"explanation": "Reference Pages 120 & 131–132: FATF Recommendation 16 requires ordering VASPs to obtain and hold required and accurate originator information and required beneficiary information, and transmit that information immediately and securely to the beneficiary VASP or financial institution during the transfer."
-},
-{
-"id": 35,
-"domain": "Compliance Programs",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "During a board meeting, the Chief Executive Officer of a bank proposes that the Chief Anti-Money Laundering Officer (CAMLO) should dual-hat as the Head of Commercial Lending and receive annual incentive bonuses tied directly to the quarterly loan-volume growth of the commercial portfolio. How should the board evaluate this proposal against Basel Committee AML governance standards?",
-"options": [
-"Reject the proposal, because the compliance function must maintain complete independence from revenue-generating business units, and compliance remuneration must never be linked to business line profitability.",
-"Approve the proposal, provided that the CAMLO delegates all suspicious activity report (SAR) signing authority to an outside vendor.",
-"Approve the proposal, because combining compliance with business generation fosters operational efficiency and reduces departmental friction.",
-"Reject the proposal, because Basel Committee rules strictly require the CAMLO to report exclusively to external judicial prosecutors."
-],
-correct: [0],
-"explanation": "Reference Pages 184–185, 270, & 293: The Basel Committee mandates that the compliance function (Second Line of Defense) must remain independent from business lines (First Line of Defense) to avoid conflicts of interest. Remuneration for compliance staff must never be tied to commercial financial targets or profitability."
-},
-{
-"id": 36,
-"domain": "Compliance Programs",
-"type": "multiple",
-"instruction": "Select THREE answers",
-"question": "An AML compliance team is updating the institution's Customer Acceptance Policy and Customer Due Diligence (CDD) procedures. When designing controls for high-risk customer categories (such as non-resident Politically Exposed Persons and offshore corporate vehicles), which THREE measures must be integrated into the Enhanced Due Diligence (EDD) workflow?",
-"options": [
-"Obtaining senior management approval prior to establishing or continuing the customer relationship.",
-"Taking reasonable, documented measures to establish and corroborate the customer's source of wealth and source of funds.",
-"Waiving documentary customer identification if the account is introduced by an existing prominent commercial depositor.",
-"Conducting enhanced, frequent ongoing monitoring of the business relationship and transactions.",
-"Exempting transactions involving domestic currency from automated transaction monitoring thresholds."
-],
-correct: [0, 1, 3],
-"explanation": "Reference Pages 165, 299–301, & 312: High-risk accounts warrant EDD measures, which include: (1) senior management approval to open or maintain the relationship, (2) independent substantiation of source of funds and source of wealth, and (3) heightened ongoing transaction monitoring. Basic identification cannot be waived, and transactions cannot be arbitrarily exempted from monitoring."
-},
-{
-"id": 37,
-"domain": "Compliance Programs",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "The Monetary Authority of Singapore (MAS) shut down the local branch of Falcon Bank Limited and fined the entity SGD 4.3 million due to substantial AML failings connected to the 1MDB sovereign wealth fund. The regulatory inquiry revealed that despite multiple transaction monitoring red flags, senior management coerced operational staff into processing billions of dollars in suspicious transfers. Which fundamental compliance requirement does this enforcement case underscore?",
-"options": [
-"Financial institutions are strictly barred from processing transactions originating from government-owned entities.",
-"Regulators will only pursue civil fines against financial institutions and cannot penalize or imprison bank officers personally.",
-"A healthy culture of compliance requires that compliance personnel have the operational independence and senior authority to challenge management, ensuring commercial revenue never overrides AML controls.",
-"Branches of foreign banks are exempt from conducting enterprise-wide risk assessments if regulated by their home country."
-],
-correct: [2],
-"explanation": "Reference Pages 267–268 & 279–280: The Falcon Bank case exemplifies that commercial interests and senior executive pressure must never take precedence over compliance. Compliance functions must have the independence and standing to challenge senior management, and failure to exercise proper controls leads to severe corporate and individual penalties (including imprisonment of the branch manager)."
-},
-{
-"id": 38,
-"domain": "Compliance Programs",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A regional bank experiences a sharp increase in automated transaction monitoring alerts. Due to compliance staffing shortages, the Chief Operational Risk Officer directs analysts to place a hard cap on the number of alerts generated per month by raising monitoring thresholds, without testing the impact or documenting a risk-based rationale. Which regulatory consequence and enforcement precedent does this practice mirror?",
-"options": [
-"It represents a defensible cost-benefit operational allocation explicitly endorsed under FinCEN guidance.",
-"It mirrors the systemic violations identified in the FinCEN enforcement action against US Bank, where capping alerts without justification constituted willful blindness and resulted in major civil penalties.",
-"It is an authorized procedure under the Basel Committee's First Line of Defense guidelines provided the board approves it annually.",
-"It constitutes an automatic defense against civil liability under the safe harbor provisions of Section 314(b)."
-],
-correct: [1],
-"explanation": "Reference Pages 274–275 & 286–287: In FinCEN's enforcement action against US Bank and former CRO Michael LaFontaine, the institution capped transaction monitoring alerts to manage staffing constraints. Regulators determined that suppressing alerts without a risk-based validation constituted willful blindness and an inadequate AML program, resulting in a personal $450,000 civil penalty against the officer."
-},
-{
-"id": 39,
-"domain": "Compliance Programs",
-"type": "multiple",
-"instruction": "Select TWO answers",
-"question": "A securities broker-dealer is updating its Know Your Employee (KYE) compliance framework following a FINRA disciplinary action against Citigroup Global Markets Inc. for failing to properly screen and fingerprint thousands of employees. Which TWO procedures are essential to maintaining a compliant, risk-based KYE framework?",
-"options": [
-"Conducting comprehensive pre-employment background screening, including criminal conviction checks and fingerprinting, to identify statutory disqualifications before onboarding.",
-"Allowing department managers to waive background checks for short-term temporary IT consultants with access to core ledger systems.",
-"Instituting an ongoing approach to employee screening, particularly when staff transfer to sensitive roles or are considered for high-level promotions.",
-"Restricting background checks exclusively to executive committee members while exempting operations and cashiering staff.",
-"Delegating the final determination of statutory disqualifications to commercial client-recruiting teams."
-],
-correct: [0, 2],
-"explanation": "Reference Pages 315–318 & 327–330: As highlighted in the Citigroup Global Markets case, broker-dealers must conduct pre-employment screening and fingerprinting to prevent hiring statutorily disqualified individuals. Furthermore, ongoing screening should be applied throughout the employment lifecycle, especially for employees moving into sensitive or high-risk functions."
-},
-{
-"id": 40,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A federal law enforcement investigator contacts a bank's BSA Officer by telephone, stating that a commercial customer is the primary target of an ongoing drug trafficking conspiracy. The agent verbally asks the bank to keep the suspect's accounts open for six months to allow ongoing monitoring, but instructs the bank not to file any SARs. What should the BSA Officer do?",
-"options": [
-"Immediately advise the investigator that all 'keep-open' requests must be received in writing on official agency letterhead specifying the duration, while the bank continues its independent legal evaluation regarding SAR filing.",
-"Comply immediately with the oral request and disable automated monitoring rules on the suspect's accounts.",
-"Inform the commercial customer immediately that federal agents have requested the account remain under surveillance.",
-"Close the account immediately without speaking to counsel or documenting the interaction."
-],
-correct: [0],
-"explanation": "Reference Pages 352, 364, & 373: Verbal keep-open requests are insufficient. Financial institutions must obtain written keep-open documentation on official agency letterhead with a clear expiration date, signed by authorized supervisory law enforcement, and retain it for five years. Furthermore, law enforcement cannot waive an institution's statutory duty to file a SAR, and notifying the client constitutes illegal tipping off."
-},
-{
-"id": 41,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "Federal law enforcement agents enter a financial institution's branch with a valid search warrant signed by a magistrate, authorizing the seizure of electronic loan files for a customer suspected of trade fraud. During the execution of the search, the lead agent instructs the head teller to sit down and answer detailed interrogation questions regarding the customer's cash deposits under oath. How should the financial institution respond?",
-"options": [
-"Permit the teller to be interrogated immediately, because a judicial search warrant compels both document seizure and on-the-spot witness testimony.",
-"Order all employees to leave the building and physically padlock the file cabinets until the board meets.",
-"Advise the agent that a search warrant authorizes search and seizure of property but does NOT compel immediate witness testimony, and direct that all interview requests be routed through legal counsel.",
-"Notify the target customer by text message that agents are seizing their loan records."
-],
-correct: [2],
-"explanation": "Reference Pages 353 & 365: A search warrant authorizes law enforcement to search designated premises and seize specified physical/electronic evidence; it does NOT compel witness testimony or on-site employee depositions. Staff should remain calm, cooperate with the search, contact counsel, and ensure all interview requests are coordinated through legal representation."
-},
-{
-"id": 42,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A bank's internal investigations unit completes an inquiry into an account held by a prominent commercial client and uncovers a pattern of suspicious funds transfers indicative of the Black Market Peso Exchange. The AML committee approves and files a Suspicious Activity Report (SAR). The following day, the client visits the branch, notices that pending outgoing wires have been delayed for review, and angrily demands to know if a SAR has been filed on their business. What must bank personnel communicate to the customer?",
-"options": [
-"Confirm that a SAR was filed, but assure the client that it is merely a routine administrative filing required by federal law.",
-"Refuse to disclose or acknowledge whether a SAR has or has not been filed, as doing so constitutes illegal tipping off under AML legislation.",
-"Hand the client a copy of the SAR narrative and refer them to the Financial Intelligence Unit for formal dispute resolution.",
-"Advise the client that a report was sent, but state that the bank cannot disclose the specific allegations without a court order."
-],
-correct: [1],
-"explanation": "Reference Pages 320, 332, & 370: Disclosing the existence, filing, or non-filing of a SAR to the subject or any unauthorized third party constitutes illegal tipping off. Under anti-tipping-off provisions, staff are strictly barred from confirming or denying SAR filings, and violations carry severe criminal penalties and imprisonment."
-},
-{
-"id": 43,
-"domain": "Investigations",
-"type": "multiple",
-"instruction": "Select TWO answers",
-"question": "Two independent US commercial banks suspect that an interconnected network of shell companies is moving cyber-extortion ransoms through accounts at both institutions. The compliance directors plan to share transactional information under the voluntary safe harbor framework of Section 314(b) of the USA PATRIOT Act. Which TWO statutory requirements must be satisfied for this information exchange to qualify for safe harbor protection?",
-"options": [
-"Both institutions must have filed the required annual notice of participation with FinCEN prior to exchanging information.",
-"The sharing must be conducted exclusively via physical certified mail reviewed by a federal judge.",
-"The shared information must be used solely to identify and report activities that the institutions suspect may involve possible money laundering or terrorist activities.",
-"Both banks must notify the account holders in writing that their transactional data is being cross-analyzed under Section 314(b).",
-"The exchange can only occur if both institutions are affiliated subsidiaries of the same parent bank holding corporation."
-],
-correct: [0, 2],
-"explanation": "Reference Pages 232 & 244: Under Section 314(b) of the USA PATRIOT Act, financial institutions may voluntarily share information with one another under safe harbor protection provided: (1) each participating entity has filed the required notice with FinCEN, (2) the information is used solely to identify and report suspected money laundering or terrorist financing, and (3) adequate data confidentiality controls are maintained. Customer consent is NOT required."
-},
-{
-"id": 44,
-"domain": "Investigations",
-"type": "single",
-"instruction": "Choose 1 answer",
-"question": "A financial intelligence analyst conducts an open-source intelligence (OSINT) review on an institutional customer. The analyst finds reliable adverse media reporting that the customer's managing partner is currently under criminal indictment abroad for coordinating an unlicensed money transfer network. Further review of the company's foreign-language web portal reveals marketing materials downplaying customer verification requirements for international transfers. What is the most appropriate next step for the analyst in conducting this investigation?",
-"options": [
-"Immediately delete the alert records to avoid exposing the bank to foreign regulatory inspections.",
-"Contact the foreign authorities directly via telephone without consulting the domestic FIU or legal counsel.",
-"Post an internal advisory on the bank's public website naming the client as a high-risk entity.",
-"Synthesize and document the OSINT findings alongside internal KYC and transaction records, and escalate the case to the designated SAR decision-making function for filing and relationship review."
-],
-correct: [3],
-"explanation": "Reference Pages 360, 365–367, & 377–378: In financial crime investigations, OSINT findings should be independently analyzed, corroborated with internal KYC and transaction histories, and formally documented. The investigator must escalate the synthesized file through established governance channels (the MLRO/SAR committee) to determine whether a SAR must be filed and whether the business relationship should be exited."
-}
+    id: 16,
+    domain: "Compliance Programs",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "A multinational financial group operating headquartered in the United States maintains a retail banking subsidiary in a foreign jurisdiction. The host country's local privacy laws strictly prohibit the cross-border sharing of customer account transaction details with external entities, including foreign parent institutions. What TWO steps should the group compliance officer take to reconcile this legal conflict?",
+    options: [
+      "Immediately terminate all customer accounts in the host branch to eliminate enterprise compliance risk",
+      "Apply the higher corporate AML standard globally to the extent permitted by the host country's local laws",
+      "Inform the local host regulator and home country supervisor of the legal conflict preventing full group-wide data sharing",
+      "Instruct the local compliance officer to bypass local privacy laws under the principle of extraterritoriality",
+      "File a Suspicious Activity Report (SAR) on the host government for obstructing an international investigation"
+    ],
+    correct: [1, 2],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 2 'FATF 40 Recommendations' (p. 165) & Chapter 3 'AML/CFT Program' (pp. 261-266, 308). When branch or subsidiary standards differ between home and host countries, institutions must apply the higher/stricter standard to the extent that local host laws permit. If host country laws prohibit compliance with the higher standard, the institution must inform its supervisors and apply appropriate supplemental measures to manage the risk."
+  },
+  {
+    id: 17,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A compliance officer receives a formal, written request from a senior law enforcement agent requesting that the bank keep an account open while an active drug trafficking investigation is being conducted. The account has triggered multiple severe automated AML alerts for cash structuring. What should the compliance officer do FIRST?",
+    options: [
+      "Immediately freeze all funds in the account and notify the customer that law enforcement is inspecting their transactions",
+      "File an immediate Suspicious Activity Report (SAR) and close the account to avoid institution exposure to criminal liability",
+      "Verify that the keep-open request is documented in writing, signed by an authorized official, and specifies the duration of the request",
+      "Comply with the request verbally and refrain from filing any future SARs on the account for the duration of the investigation"
+    ],
+    correct: [2],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 4, 'Conducting and Responding to Investigations' (pp. 372-373). Law enforcement may request that a financial institution maintain an account open during an ongoing investigation. However, the compliance officer must ensure the request is in writing, issued by an authorized agency, and clearly specifies the timeframe. The bank maintains its independent legal obligation to monitor and file SARs on continuing suspicious activity."
+  },
+  {
+    id: 18,
+    domain: "Risks and Methods",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "An AML compliance investigator is reviewing the gaming logs of a high-value customer at a major casino. Which THREE customer behaviors represent distinct red flags indicating potential money laundering through the casino cashier's cage or floor?",
+    options: [
+      "Redeeming a large quantity of casino chips for a casino check after engaging in minimal or nominal gaming activity",
+      "Inserting high numbers of small-denomination bills into slot machines without gaming and requesting a payout voucher",
+      "Using a single credit card to purchase chips and cashing out remaining winnings at the end of the night via wire transfer back to the same credit card account",
+      "Establishing a line of credit, purchasing chips, playing minimally, paying off the credit line in cash, and requesting a check for the remaining chips",
+      "Consistently betting both sides of an even bet (e.g., betting both red and black in roulette) across colluding accounts"
+    ],
+    correct: [0, 1, 3],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1, 'Casinos' (pp. 67-69, 80-81). Minimal gaming after converting cash/credit into chips or slot machine vouchers ('bill stuffing') to obtain a clean casino check or large-denomination cash is a primary casino laundering red flag. Paying off markers/credit lines in cash following minimal play is also a key indicator."
+  },
+  {
+    id: 19,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "Under the Basel Committee on Banking Supervision's guidelines on Sound Management of Risks Related to Money Laundering and Financing of Terrorism, which body or function constitutes the 'second line of defense' within a bank's internal risk control framework?",
+    options: [
+      "The business line personnel and front-office customer onboarding staff",
+      "The independent external auditor and regulatory bank examination teams",
+      "The board of directors and executive leadership committee",
+      "The chief AML compliance officer, internal control functions, and human resources"
+    ],
+    correct: [3],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 2, 'The Basel Committee on Banking Supervision' (pp. 184-185). The Basel Committee defines three lines of defense: (1) Line of business / front office, (2) Chief AML officer, compliance function, and internal control functions (as well as HR/IT), and (3) Internal audit function."
+  },
+  {
+    id: 20,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A bank compliance officer identifies clear evidence of internal fraud and potential money laundering involving a senior vice president of private banking. The officer determines that a Suspicious Activity Report (SAR) must be filed. While preparing the filing, the bank receives a grand jury subpoena demanding all transaction records for the senior officer's accounts. What action must the compliance officer strictly avoid?",
+    options: [
+      "Disclosing to the senior vice president or any non-authorized employee that a SAR is being filed or that a subpoena was received",
+      "Providing the underlying transactional documents requested by the grand jury subpoena to law enforcement authorities",
+      "Notifying the board of directors' audit committee regarding the internal employee misconduct",
+      "Filing the SAR with the national Financial Intelligence Unit (FIU) within the legally prescribed filing deadline"
+    ],
+    correct: [0],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 4, 'Suspicious Activity Reporting' & 'Tipping Off' (pp. 85, 166, 367-370). Strict anti-tipping-off rules prohibit disclosing the existence or intent to file a SAR to the subject of the report or any unauthorized third party. Disclosing this to the senior vice president violates federal/international anti-tipping laws and exposes the officer and bank to severe criminal penalties."
+  },
+  {
+    id: 21,
+    domain: "Risks and Methods",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "A compliance analyst is reviewing an account held by a corporate customer. The analyst suspects the customer is utilizing a 'funnel account' architecture to launder illicit cash proceeds. Which TWO operational characteristics strongly support this suspicion?",
+    options: [
+      "Multiple cash deposits made in amounts just below currency reporting thresholds at bank branches in geographic locations far removed from the primary business location",
+      "Rapid withdrawal or transfer of funds from the centralized account almost immediately after multiple fragmented deposits occur",
+      "Frequent international wire transfers originating from well-known foreign central banks with high interest yield payouts",
+      "Exclusive use of preprinted deposit slips with fully verified corporate tax identification details",
+      "Long periods of account dormancy followed by a single lump-sum check deposit from an escrow agent"
+    ],
+    correct: [0, 1],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1, 'Funnel Accounts' (pp. 27, 104-105). A funnel account exploits branch networks by receiving multiple structured cash deposits in geographically diverse locations away from the main business, followed by rapid withdrawal or wire transfer out of the account shortly thereafter."
+  },
+  {
+    id: 22,
+    domain: "Compliance Programs",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "An institutional broker-dealer is onboarding a new foreign corporate client located in a offshore financial center. The corporate documentation indicates that the entity's equity is represented entirely by bearer shares. Which risk mitigation measure is most appropriate under FATF Recommendations?",
+    options: [
+      "Open the brokerage account immediately, provided the entity executes a self-declaration promising not to trade securities",
+      "Rely entirely on the foreign company formation agent's written representation regarding the identity of the directors",
+      "Ensure the bearer shares are dematerialized or immobilized with a recognized custodian, or identify all beneficial owners holding control thresholds",
+      "Waive Enhanced Due Diligence (EDD) if the company was incorporated more than ten years ago as a shelf company"
+    ],
+    correct: [2],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1 'Bearer Shares' (p. 127) & Chapter 2 'FATF Recommendations' (pp. 160, 168). Bearer shares hide ownership because title passes with physical possession. FATF Recommendations require institutions to mitigate bearer share risks by requiring them to be immobilized, dematerialized, converted to registered shares, or by continually identifying ultimate beneficial owners."
+  },
+  {
+    id: 23,
+    domain: "International Standards",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "According to the FATF 40 Recommendations, which TWO obligations apply specifically to financial institutions when conducting Enhanced Due Diligence (EDD) on foreign Politically Exposed Persons (PEPs)?",
+    options: [
+      "Obtain senior management approval before establishing or continuing the business relationship",
+      "Automatically freeze all incoming and outgoing international wire transfers linked to the foreign PEP",
+      "Take reasonable measures to establish the source of wealth and source of funds of the customer and beneficial owner",
+      "File a mandatory Suspicious Activity Report (SAR) upon opening any account for a foreign PEP regardless of activity",
+      "Require the foreign PEP to execute a legally binding waiver of legal immunity in local jurisdiction court"
+    ],
+    correct: [0, 2],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 1 'PEPs' (pp. 37-38) & Chapter 2 'FATF Recommendation 12' (p. 165). For foreign PEPs, FATF requires institutions to (1) obtain senior management approval for establishing/continuing the relationship, (2) take reasonable measures to establish source of wealth and source of funds, and (3) conduct enhanced ongoing monitoring."
+  },
+  {
+    id: 24,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "During a ongoing transaction monitoring investigation, an AML analyst discovers a series of suspicious wire transfers linked to a prospective commercial borrower. Before the analyst can complete the internal narrative report, the bank's commercial loan unit approves and disburses a $2 million credit facility to the customer. What should the AML officer do FIRST?",
+    options: [
+      "Unilaterally cancel the loan contract and seize the remaining disbursed funds in the customer's checking account",
+      "Complete the internal investigation, determine whether suspicious activity reporting criteria are met, and file a SAR accordingly",
+      "Contact the borrower directly to inform them that the loan proceeds are under active financial crime investigation",
+      "Notify the local press to mitigate the institution's exposure to severe public reputational damage"
+    ],
+    correct: [1],
+    explanation: "Reference Page/Section: CAMS Study Guide v6.53, Chapter 4, 'SAR Decision-Making Process' (pp. 348, 367-368). The compliance officer must follow the established internal investigation process to gather facts, evaluate transaction patterns, and determine if a SAR is required. Unilateral asset seizure or contact with the customer (tipping off) is improper and violates operational and legal requirements."
+  },
+  {
+    id: 25,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A compliance officer at an international bank in Antwerp notices that a commercial diamond trading client regularly receives incoming wire transfers from offshore shell entities that significantly exceed the fair market value of the rough stones declared on customs documents. When questioned, the customer provides amended invoices showing arbitrarily inflated valuations and claims the transactions reflect specialized dealer premiums. Which trade-based money laundering (TBML) technique is being executed, and what is its primary financial mechanism?",
+    options: [
+      "Ghost-shipping, wherein documentation is created for nonexistent cargo to justify foreign exchange remittances.",
+      "Overinvoicing, wherein goods are invoiced above fair market value to transfer excess capital to the seller/exporter.",
+      "Underinvoicing, wherein goods are invoiced below fair market value to transfer economic wealth to the foreign buyer/importer.",
+      "Short-shipping, wherein the exporter invoices full quantities but ships fewer units to generate untaxed cash reserves."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 102–103 & 340: Overinvoicing occurs when goods or services are invoiced at a price above fair market value, enabling the exporter (seller) to receive excess value from the buyer. Unexplained price increases and mismatched customs values are classic indicators of TBML."
+  },
+  {
+    id: 26,
+    domain: "Risks and Methods",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "A private banking relationship manager in Zurich is conducting onboarding for a high-net-worth client residing in South America. The prospective customer insists on structuring the account under an International Business Corporation (IBC) incorporated in a Caribbean secrecy haven. The entity issues bearer shares, uses corporate nominee directors supplied by a trust company, and requests that the bank hold all physical correspondence under a 'hold mail' agreement. Which THREE factors in this arrangement present the greatest money laundering vulnerability to the financial institution?",
+    options: [
+      "The institution's inability to settle outgoing payments via retail automated clearing house (ACH) batches.",
+      "The utilization of bearer shares, which allow ownership and control to be transferred via physical possession without any central corporate registry.",
+      "The interposition of nominee directors in an offshore secrecy jurisdiction, which obscures the ultimate beneficial owner (UBO) from compliance scrutiny.",
+      "The legal requirement that all offshore trusts maintain audited financial statements with host regulators.",
+      "The reliance on a 'hold mail' agreement, which suppresses transaction statements and impedes ongoing customer communication."
+    ],
+    correct: [1, 2, 4],
+    explanation: "Reference Pages 35, 47–48, & 126–127: Bearer shares (which transfer equity title by physical possession), nominee directors/IBCs (which conceal true UBOs), and 'hold mail' services (which prevent bank documentation from reaching the customer's domicile) are major vulnerabilities routinely abused by illicit actors to prevent transparency in private banking."
+  },
+  {
+    id: 27,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A transaction monitoring alert flags a series of wallet transfers involving a customer of a regulated virtual asset service provider (VASP). An investigation reveals that the customer regularly receives cryptocurrency from peer-to-peer unhosted wallets, immediately routes the assets through an online mixing service (tumbler) to sever the transaction history on the blockchain, and splits the outputs across decentralized applications (DApps) before converting them to fiat currency. At which stage of the money laundering cycle is the mixing and decentralized routing primarily functioning?",
+    options: [
+      "Placement",
+      "Smurfing",
+      "Integration",
+      "Layering"
+    ],
+    correct: [3],
+    explanation: "Reference Pages 6, 18, & 118–122: The layering stage involves separating illicit proceeds from their source through complex webs of financial transactions designed to disguise the audit trail and provide anonymity. Tumblers/mixers and multi-protocol DApp movements are digital layering tools that obscure fund origins."
+  },
+  {
+    id: 28,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A high-stakes patron at a land-based casino buys $90,000 in gaming chips using cash at the cashier cage. After placing a few conservative wagers totaling $400 over a twenty-minute period, the patron returns to the cage, redeems the remaining $89,600 in chips, and insists that the cashier issue a casino check made payable to an unrelated third-party commercial holding company. What should the casino AML officer do FIRST upon being alerted by the cage supervisor?",
+    options: [
+      "Refuse the request to issue the third-party check, review the patron's buy-in and gaming activity, and evaluate the transaction for potential SAR filing.",
+      "Instruct the cashier to fulfill the wire immediately to avoid a confrontational breach of customer service protocols.",
+      "Confront the patron on the casino floor and demand that they sign an affidavit disclosing their ultimate source of wealth.",
+      "Contact municipal law enforcement immediately to arrest the patron on charges of microstructuring."
+    ],
+    correct: [0],
+    explanation: "Reference Pages 66–69 & 80–81: Minimal gaming followed by a request to convert cash buy-ins into casino checks or transfers to third parties is a classic casino money laundering typology. The compliance officer must prevent the sanitization of funds, examine the customer's full transaction profile, and initiate an internal suspicious activity investigation. Confronting the patron risks tipping off, and calling police to arrest without substantiation is improper."
+  },
+  {
+    id: 29,
+    domain: "Risks and Methods",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "An AML investigator examines a business checking account belonging to a small retail boutique. Over a three-week window, the account receives twenty-five cash deposits ranging from $800 to $950, conducted at branch locations across three different states using counter deposit slips. Within 24 hours of each cluster of deposits, the entire balance is withdrawn via debit cards at automated teller machines (ATMs) located near an international border. Which TWO typologies are demonstrated by these transactional patterns?",
+    options: [
+      "Securities wash trading involving synchronized buy and sell orders.",
+      "Microstructuring cash deposits to remain well beneath automated reporting triggers and staff observation thresholds.",
+      "Fictitious double invoicing within a traditional open-account trade contract.",
+      "The operation of a funnel account to move cash proceeds across distinct geographic zones without wire trails.",
+      "Underinvoicing within an international commodity pool."
+    ],
+    correct: [1, 3],
+    explanation: "Reference Pages 27, 43, & 104–105: Microstructuring involves breaking large cash balances into very small, inconspicuous deposits (e.g., ~$900) to evade detection. Funnel accounts exploit branch networks by receiving cash deposits in diverse geographic areas and making rapid withdrawals in distant locations."
+  },
+  {
+    id: 30,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A commercial bank is reviewing customer onboarding guidelines to ensure adherence to FATF Recommendation 10. The compliance department needs to specify the conditions under which Customer Due Diligence (CDD) is mandatory under the FATF standard. In which of the following scenarios is the bank NOT strictly required by FATF Recommendation 10 to perform CDD?",
+    options: [
+      "When opening an ongoing deposit account or establishing a formal commercial banking relationship.",
+      "When the institution has doubts regarding the veracity or adequacy of previously obtained customer identification data.",
+      "When carrying out an occasional cross-border financial transaction totaling USD/EUR 18,000.",
+      "When processing an occasional domestic one-off wire transfer of USD/EUR 600 where there is no suspicion of money laundering or terrorist financing."
+    ],
+    correct: [3],
+    explanation: "Reference Pages 164 & 176: Under FATF Recommendation 10, CDD is mandatory when: (1) establishing business relationships, (2) carrying out occasional transactions above USD/EUR 15,000, (3) carrying out wire transfers in circumstances covered by Recommendation 16 (exceeding USD/EUR 1,000), (4) there is suspicion of ML/TF, or (5) there are doubts regarding prior ID data. An occasional non-suspicious domestic transfer of $600 falls below the mandatory CDD thresholds."
+  },
+  {
+    id: 31,
+    domain: "International Standards",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "The US Secretary of the Treasury, having consulted with the Secretary of State and the Attorney General, designates a foreign financial institution as a 'primary money laundering concern' under Section 311 of the USA PATRIOT Act. Which THREE of the following actions can the Treasury mandate US financial institutions to execute under Section 311 special measures?",
+    options: [
+      "Require US banks to keep records and file reports on specific financial transactions involving the designated institution, including participant and beneficial ownership details.",
+      "Require US banks to collect information on the beneficial ownership of any account opened or maintained in the US by or on behalf of a foreign person associated with the designee.",
+      "Direct the Financial Industry Regulatory Authority (FINRA) to revoke the charter of all domestic retail broker-dealers holding correspondent ties with the region.",
+      "Prohibit or condition the opening or maintaining of correspondent or payable-through accounts for the designated foreign financial institution.",
+      "Require that foreign supervisory authorities immediately extradite the designated institution's senior management to the United States."
+    ],
+    correct: [0, 1, 3],
+    explanation: "Reference Pages 227–228: Section 311 provides five specific special measures: (1) recordkeeping/reporting on transactions, (2) obtaining beneficial ownership information on accounts, (3) identifying customers permitted to use payable-through accounts, (4) identifying customers using correspondent accounts, and (5) prohibiting or conditioning the maintenance of correspondent or payable-through accounts. It does not empower extrajudicial extradition or arbitrary revocation of domestic broker-dealer charters."
+  },
+  {
+    id: 32,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A multinational financial institution operating across the European Union is updating its criminal compliance policies to incorporate the Sixth Anti-Money Laundering Directive (6AMLD) and its complementary Criminal Law Directive (Directive 2018/1673). What major development was codified regarding corporate accountability under this framework?",
+    options: [
+      "Exemption of corporate entities from legal culpability if their nominated MLRO had less than five years of industry experience.",
+      "Establishment of a harmonized list of 22 predicate offenses and the extension of criminal liability and sanctions directly to legal persons (corporate entities).",
+      "Restriction of money laundering criminal prosecution exclusively to natural persons, shielding corporate charters from judicial dissolution.",
+      "Limitation of criminal predicate offenses exclusively to drug trafficking as defined under the 1988 Vienna Convention."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 198–201 & 213: The 6AMLD, complemented by Directive 2018/1673, harmonized criminalization across the EU by setting a comprehensive list of 22 predicate offenses (including cybercrime and environmental crime) and explicitly extended criminal liability to legal persons (corporations), subjecting entities to fines, disqualifications, and judicial winding-up."
+  },
+  {
+    id: 33,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A global banking group headquartered in Frankfurt maintains a retail branch in a host jurisdiction where local banking secrecy laws permit institutions to verify beneficial ownership only at a 25% ownership threshold. Group-wide policy established at the head office mandates customer verification down to a 10% threshold. Local legislation in the host jurisdiction does not prohibit the collection of 10% beneficial ownership information. According to Basel Committee and FATF consolidated group standards, which action must the branch take?",
+    options: [
+      "Adopt the host country's 25% threshold to eliminate operational differences with domestic peer institutions.",
+      "Request a formal exemption from the home-country supervisory authority to adhere solely to the host jurisdiction's local rules.",
+      "Apply the head office's stricter 10% beneficial ownership standard across the host-country branch.",
+      "Discontinue all commercial lending operations in the host jurisdiction while maintaining retail accounts."
+    ],
+    correct: [2],
+    explanation: "Reference Pages 183 & 308–309: Basel Committee and FATF standards dictate that branches and subsidiaries of a financial group must apply the higher of the two standards between home and host country requirements. If host-country laws do not prohibit compliance with the stricter home-country standard, the higher standard must be enforced globally."
+  },
+  {
+    id: 34,
+    domain: "International Standards",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "Under FATF Recommendation 16 (the 'Travel Rule') as extended to virtual assets and Virtual Asset Service Providers (VASPs), what is the primary obligation of an originating VASP when initiating a qualifying virtual asset transfer to another VASP?",
+    options: [
+      "Obtain and hold accurate originator and required beneficiary information, and submit that information immediately and securely to the beneficiary VASP or institution.",
+      "Convert the virtual asset into a fiat currency equivalent before clearing the transaction across external blockchains.",
+      "Transmit the private cryptographic keys of both wallet counterparties to the local Financial Intelligence Unit (FIU).",
+      "Withhold the transfer for a mandatory 48-hour quarantine to perform independent blockchain analytics."
+    ],
+    correct: [0],
+    explanation: "Reference Pages 120 & 131–132: FATF Recommendation 16 requires ordering VASPs to obtain and hold required and accurate originator information and required beneficiary information, and transmit that information immediately and securely to the beneficiary VASP or financial institution during the transfer."
+  },
+  {
+    id: 35,
+    domain: "Compliance Programs",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "During a board meeting, the Chief Executive Officer of a bank proposes that the Chief Anti-Money Laundering Officer (CAMLO) should dual-hat as the Head of Commercial Lending and receive annual incentive bonuses tied directly to the quarterly loan-volume growth of the commercial portfolio. How should the board evaluate this proposal against Basel Committee AML governance standards?",
+    options: [
+      "Reject the proposal, because the compliance function must maintain complete independence from revenue-generating business units, and compliance remuneration must never be linked to business line profitability.",
+      "Approve the proposal, provided that the CAMLO delegates all suspicious activity report (SAR) signing authority to an outside vendor.",
+      "Approve the proposal, because combining compliance with business generation fosters operational efficiency and reduces departmental friction.",
+      "Reject the proposal, because Basel Committee rules strictly require the CAMLO to report exclusively to external judicial prosecutors."
+    ],
+    correct: [0],
+    explanation: "Reference Pages 184–185, 270, & 293: The Basel Committee mandates that the compliance function (Second Line of Defense) must remain independent from business lines (First Line of Defense) to avoid conflicts of interest. Remuneration for compliance staff must never be tied to commercial financial targets or profitability."
+  },
+  {
+    id: 36,
+    domain: "Compliance Programs",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "An AML compliance team is updating the institution's Customer Acceptance Policy and Customer Due Diligence (CDD) procedures. When designing controls for high-risk customer categories (such as non-resident Politically Exposed Persons and offshore corporate vehicles), which THREE measures must be integrated into the Enhanced Due Diligence (EDD) workflow?",
+    options: [
+      "Obtaining senior management approval prior to establishing or continuing the customer relationship.",
+      "Taking reasonable, documented measures to establish and corroborate the customer's source of wealth and source of funds.",
+      "Waiving documentary customer identification if the account is introduced by an existing prominent commercial depositor.",
+      "Conducting enhanced, frequent ongoing monitoring of the business relationship and transactions.",
+      "Exempting transactions involving domestic currency from automated transaction monitoring thresholds."
+    ],
+    correct: [0, 1, 3],
+    explanation: "Reference Pages 165, 299–301, & 312: High-risk accounts warrant EDD measures, which include: (1) senior management approval to open or maintain the relationship, (2) independent substantiation of source of funds and source of wealth, and (3) heightened ongoing transaction monitoring. Basic identification cannot be waived, and transactions cannot be arbitrarily exempted from monitoring."
+  },
+  {
+    id: 37,
+    domain: "Compliance Programs",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "The Monetary Authority of Singapore (MAS) shut down the local branch of Falcon Bank Limited and fined the entity SGD 4.3 million due to substantial AML failings connected to the 1MDB sovereign wealth fund. The regulatory inquiry revealed that despite multiple transaction monitoring red flags, senior management coerced operational staff into processing billions of dollars in suspicious transfers. Which fundamental compliance requirement does this enforcement case underscore?",
+    options: [
+      "Financial institutions are strictly barred from processing transactions originating from government-owned entities.",
+      "Regulators will only pursue civil fines against financial institutions and cannot penalize or imprison bank officers personally.",
+      "A healthy culture of compliance requires that compliance personnel have the operational independence and senior authority to challenge management, ensuring commercial revenue never overrides AML controls.",
+      "Branches of foreign banks are exempt from conducting enterprise-wide risk assessments if regulated by their home country."
+    ],
+    correct: [2],
+    explanation: "Reference Pages 267–268 & 279–280: The Falcon Bank case exemplifies that commercial interests and senior executive pressure must never take precedence over compliance. Compliance functions must have the independence and standing to challenge senior management, and failure to exercise proper controls leads to severe corporate and individual penalties (including imprisonment of the branch manager)."
+  },
+  {
+    id: 38,
+    domain: "Compliance Programs",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A regional bank experiences a sharp increase in automated transaction monitoring alerts. Due to compliance staffing shortages, the Chief Operational Risk Officer directs analysts to place a hard cap on the number of alerts generated per month by raising monitoring thresholds, without testing the impact or documenting a risk-based rationale. Which regulatory consequence and enforcement precedent does this practice mirror?",
+    options: [
+      "It represents a defensible cost-benefit operational allocation explicitly endorsed under FinCEN guidance.",
+      "It mirrors the systemic violations identified in the FinCEN enforcement action against US Bank, where capping alerts without justification constituted willful blindness and resulted in major civil penalties.",
+      "It is an authorized procedure under the Basel Committee's First Line of Defense guidelines provided the board approves it annually.",
+      "It constitutes an automatic defense against civil liability under the safe harbor provisions of Section 314(b)."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 274–275 & 286–287: In FinCEN's enforcement action against US Bank and former CRO Michael LaFontaine, the institution capped transaction monitoring alerts to manage staffing constraints. Regulators determined that suppressing alerts without a risk-based validation constituted willful blindness and an inadequate AML program, resulting in a personal $450,000 civil penalty against the officer."
+  },
+  {
+    id: 39,
+    domain: "Compliance Programs",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "A securities broker-dealer is updating its Know Your Employee (KYE) compliance framework following a FINRA disciplinary action against Citigroup Global Markets Inc. for failing to properly screen and fingerprint thousands of employees. Which TWO procedures are essential to maintaining a compliant, risk-based KYE framework?",
+    options: [
+      "Conducting comprehensive pre-employment background screening, including criminal conviction checks and fingerprinting, to identify statutory disqualifications before onboarding.",
+      "Allowing department managers to waive background checks for short-term temporary IT consultants with access to core ledger systems.",
+      "Instituting an ongoing approach to employee screening, particularly when staff transfer to sensitive roles or are considered for high-level promotions.",
+      "Restricting background checks exclusively to executive committee members while exempting operations and cashiering staff.",
+      "Delegating the final determination of statutory disqualifications to commercial client-recruiting teams."
+    ],
+    correct: [0, 2],
+    explanation: "Reference Pages 315–318 & 327–330: As highlighted in the Citigroup Global Markets case, broker-dealers must conduct pre-employment screening and fingerprinting to prevent hiring statutorily disqualified individuals. Furthermore, ongoing screening should be applied throughout the employment lifecycle, especially for employees moving into sensitive or high-risk functions."
+  },
+  {
+    id: 40,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A federal law enforcement investigator contacts a bank's BSA Officer by telephone, stating that a commercial customer is the primary target of an ongoing drug trafficking conspiracy. The agent verbally asks the bank to keep the suspect's accounts open for six months to allow ongoing monitoring, but instructs the bank not to file any SARs. What should the BSA Officer do?",
+    options: [
+      "Immediately advise the investigator that all 'keep-open' requests must be received in writing on official agency letterhead specifying the duration, while the bank continues its independent legal evaluation regarding SAR filing.",
+      "Comply immediately with the oral request and disable automated monitoring rules on the suspect's accounts.",
+      "Inform the commercial customer immediately that federal agents have requested the account remain under surveillance.",
+      "Close the account immediately without speaking to counsel or documenting the interaction."
+    ],
+    correct: [0],
+    explanation: "Reference Pages 352, 364, & 373: Verbal keep-open requests are insufficient. Financial institutions must obtain written keep-open documentation on official agency letterhead with a clear expiration date, signed by authorized supervisory law enforcement, and retain it for five years. Furthermore, law enforcement cannot waive an institution's statutory duty to file a SAR, and notifying the client constitutes illegal tipping off."
+  },
+  {
+    id: 41,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "Federal law enforcement agents enter a financial institution's branch with a valid search warrant signed by a magistrate, authorizing the seizure of electronic loan files for a customer suspected of trade fraud. During the execution of the search, the lead agent instructs the head teller to sit down and answer detailed interrogation questions regarding the customer's cash deposits under oath. How should the financial institution respond?",
+    options: [
+      "Permit the teller to be interrogated immediately, because a judicial search warrant compels both document seizure and on-the-spot witness testimony.",
+      "Order all employees to leave the building and physically padlock the file cabinets until the board meets.",
+      "Advise the agent that a search warrant authorizes search and seizure of property but does NOT compel immediate witness testimony, and direct that all interview requests be routed through legal counsel.",
+      "Notify the target customer by text message that agents are seizing their loan records."
+    ],
+    correct: [2],
+    explanation: "Reference Pages 353 & 365: A search warrant authorizes law enforcement to search designated premises and seize specified physical/electronic evidence; it does NOT compel witness testimony or on-site employee depositions. Staff should remain calm, cooperate with the search, contact counsel, and ensure all interview requests are coordinated through legal representation."
+  },
+  {
+    id: 42,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A bank's internal investigations unit completes an inquiry into an account held by a prominent commercial client and uncovers a pattern of suspicious funds transfers indicative of the Black Market Peso Exchange. The AML committee approves and files a Suspicious Activity Report (SAR). The following day, the client visits the branch, notices that pending outgoing wires have been delayed for review, and angrily demands to know if a SAR has been filed on their business. What must bank personnel communicate to the customer?",
+    options: [
+      "Confirm that a SAR was filed, but assure the client that it is merely a routine administrative filing required by federal law.",
+      "Refuse to disclose or acknowledge whether a SAR has or has not been filed, as doing so constitutes illegal tipping off under AML legislation.",
+      "Hand the client a copy of the SAR narrative and refer them to the Financial Intelligence Unit for formal dispute resolution.",
+      "Advise the client that a report was sent, but state that the bank cannot disclose the specific allegations without a court order."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 320, 332, & 370: Disclosing the existence, filing, or non-filing of a SAR to the subject or any unauthorized third party constitutes illegal tipping off. Under anti-tipping-off provisions, staff are strictly barred from confirming or denying SAR filings, and violations carry severe criminal penalties and imprisonment."
+  },
+  {
+    id: 43,
+    domain: "Investigations",
+    type: "multiple",
+    instruction: "Select TWO answers",
+    question: "Two independent US commercial banks suspect that an interconnected network of shell companies is moving cyber-extortion ransoms through accounts at both institutions. The compliance directors plan to share transactional information under the voluntary safe harbor framework of Section 314(b) of the USA PATRIOT Act. Which TWO statutory requirements must be satisfied for this information exchange to qualify for safe harbor protection?",
+    options: [
+      "Both institutions must have filed the required annual notice of participation with FinCEN prior to exchanging information.",
+      "The sharing must be conducted exclusively via physical certified mail reviewed by a federal judge.",
+      "The shared information must be used solely to identify and report activities that the institutions suspect may involve possible money laundering or terrorist activities.",
+      "Both banks must notify the account holders in writing that their transactional data is being cross-analyzed under Section 314(b).",
+      "The exchange can only occur if both institutions are affiliated subsidiaries of the same parent bank holding corporation."
+    ],
+    correct: [0, 2],
+    explanation: "Reference Pages 232 & 244: Under Section 314(b) of the USA PATRIOT Act, financial institutions may voluntarily share information with one another under safe harbor protection provided: (1) each participating entity has filed the required notice with FinCEN, (2) the information is used solely to identify and report suspected money laundering or terrorist financing, and (3) adequate data confidentiality controls are maintained. Customer consent is NOT required."
+  },
+  {
+    id: 44,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A financial intelligence analyst conducts an open-source intelligence (OSINT) review on an institutional customer. The analyst finds reliable adverse media reporting that the customer's managing partner is currently under criminal indictment abroad for coordinating an unlicensed money transfer network. Further review of the company's foreign-language web portal reveals marketing materials downplaying customer verification requirements for international transfers. What is the most appropriate next step for the analyst in conducting this investigation?",
+    options: [
+      "Immediately delete the alert records to avoid exposing the bank to foreign regulatory inspections.",
+      "Contact the foreign authorities directly via telephone without consulting the domestic FIU or legal counsel.",
+      "Post an internal advisory on the bank's public website naming the client as a high-risk entity.",
+      "Synthesize and document the OSINT findings alongside internal KYC and transaction records, and escalate the case to the designated SAR decision-making function for filing and relationship review."
+    ],
+    correct: [3],
+    explanation: "Reference Pages 360, 365–367, & 377–378: In financial crime investigations, OSINT findings should be independently analyzed, corroborated with internal KYC and transaction histories, and formally documented. The investigator must escalate the synthesized file through established governance channels (the MLRO/SAR committee) to determine whether a SAR must be filed and whether the business relationship should be exited."
+  }
 ];
 
 // ==========================================
@@ -1000,9 +981,8 @@ function updateMissedUI() {
 }
 
 // ==========================================
-// 4. RANDOMIZATION & BULLETPROOF PREPARATION
+// 4. RANDOMIZATION & PREPARATION
 // ==========================================
-// Fisher-Yates shuffle algorithm
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -1011,27 +991,17 @@ function shuffleArray(array) {
   return array;
 }
 
-// Safely prepares questions and filters out invalid/malformed entries
 function getSanitizedQuestionsPool() {
-  // 1. Flatten array in case questions were pasted inside another array [[...]]
   const flattened = (typeof questionsData !== "undefined" && Array.isArray(questionsData)) 
     ? questionsData.flat(Infinity) 
     : [];
 
-  // 2. Filter only valid question objects that have an options array
   const validQuestions = flattened.filter((q, index) => {
-    if (!q || typeof q !== "object") {
-      console.warn(`[CAMS App] Skipped non-object at index ${index}:`, q);
-      return false;
-    }
-    if (!Array.isArray(q.options)) {
-      console.warn(`[CAMS App] Skipped question missing 'options' array (ID: ${q.id || 'unknown'}):`, q);
-      return false;
-    }
+    if (!q || typeof q !== "object") return false;
+    if (!Array.isArray(q.options)) return false;
     return true;
   });
 
-  // 3. Clone cleanly
   return validQuestions.map(q => ({
     ...q,
     options: [...q.options],
@@ -1040,7 +1010,7 @@ function getSanitizedQuestionsPool() {
 }
 
 // ==========================================
-// 5. QUIZ ENGINE (RANDOMIZED)
+// 5. QUIZ ENGINE (RANDOMIZED & FIXED)
 // ==========================================
 let filteredList = [];
 let currentQIndex = 0;
@@ -1061,7 +1031,6 @@ function filterQuestions() {
     filteredList = pool.filter(q => q.domain === selectedDomain);
   }
 
-  // Scramble question order so it does not always start with ID 1
   filteredList = shuffleArray(filteredList);
   restartQuiz();
 }
@@ -1072,12 +1041,174 @@ function restartQuiz() {
   quizScore = 0;
   isAnswerSubmitted = false;
 
-  // Fresh reshuffle on every restart
   shuffleArray(filteredList);
 
   document.getElementById("quiz-card").classList.remove("hidden");
   document.getElementById("quiz-summary").classList.add("hidden");
   loadQuestion(0);
+}
+
+function loadQuestion(index) {
+  if (filteredList.length === 0) {
+    document.getElementById("q-domain").textContent = "Empty";
+    document.getElementById("q-type").textContent = "-";
+    document.getElementById("q-text").textContent = "No questions found matching this filter.";
+    document.getElementById("q-options").innerHTML = "";
+    document.getElementById("action-btn").classList.add("hidden");
+    document.getElementById("explanation").classList.add("hidden");
+    document.getElementById("q-progress-text").textContent = "0 of 0";
+    document.getElementById("quiz-progress").style.width = "0%";
+    return;
+  }
+
+  isAnswerSubmitted = false;
+  document.getElementById("action-btn").classList.remove("hidden");
+  const q = filteredList[index];
+
+  const missedIds = getMissedQuestionIds();
+  const isMissed = missedIds.includes(q.id);
+
+  document.getElementById("q-domain").innerHTML = `
+    ${q.domain} 
+    <span class="badge" style="background: #e4e7eb; color: #2d3436; margin-left:6px;">ID #${q.id}</span>
+    ${isMissed ? '<span class="badge badge-missed" style="margin-left:6px;">Needs Review</span>' : ''}
+  `;
+  document.getElementById("q-type").textContent = q.instruction;
+  document.getElementById("q-text").textContent = `${index + 1}. ${q.question}`;
+  document.getElementById("q-progress-text").textContent = `Question ${index + 1} of ${filteredList.length}`;
+  document.getElementById("quiz-progress").style.width = `${((index + 1) / filteredList.length) * 100}%`;
+
+  const explanationBox = document.getElementById("explanation");
+  explanationBox.classList.add("hidden");
+
+  const container = document.getElementById("q-options");
+  container.innerHTML = "";
+
+  const inputType = q.type === "multiple" ? "checkbox" : "radio";
+
+  q.options.forEach((opt, idx) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.id = `opt-${idx}`;
+
+    const input = document.createElement("input");
+    input.type = inputType;
+    input.name = "quiz-radio";
+    input.value = idx;
+
+    div.addEventListener("click", () => {
+      if (isAnswerSubmitted && document.getElementById("mode-selector").value === "practice") return;
+      if (q.type === "single") {
+        document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
+        div.classList.add("selected");
+        input.checked = true;
+      } else {
+        input.checked = !input.checked;
+        div.classList.toggle("selected", input.checked);
+      }
+    });
+
+    const label = document.createElement("label");
+    label.textContent = opt;
+    label.style.cursor = "pointer";
+
+    div.appendChild(input);
+    div.appendChild(label);
+    container.appendChild(div);
+  });
+
+  const mode = document.getElementById("mode-selector").value;
+  const btn = document.getElementById("action-btn");
+  btn.textContent = (mode === "practice") ? "Submit Answer" : (index === filteredList.length - 1 ? "Finish Exam" : "Next Question");
+}
+
+function handleQuizAction() {
+  const q = filteredList[currentQIndex];
+  const mode = document.getElementById("mode-selector").value;
+
+  const checkedNodes = Array.from(document.querySelectorAll('input[name="quiz-radio"]:checked'));
+  const selected = checkedNodes.map(n => parseInt(n.value)).sort();
+
+  if (selected.length === 0) {
+    alert("Please select your answer(s) first.");
+    return;
+  }
+
+  userAnswers[currentQIndex] = selected;
+
+  if (mode === "practice") {
+    if (!isAnswerSubmitted) {
+      isAnswerSubmitted = true;
+      const isCorrect = arraysMatch(selected, q.correct);
+
+      if (isCorrect) {
+        quizScore++;
+        if (getMissedQuestionIds().includes(q.id)) {
+          removeMissedQuestionId(q.id);
+        }
+      } else {
+        saveMissedQuestionId(q.id);
+      }
+
+      q.options.forEach((_, idx) => {
+        const el = document.getElementById(`opt-${idx}`);
+        if (q.correct.includes(idx)) el.classList.add("correct");
+        else if (selected.includes(idx)) el.classList.add("incorrect");
+      });
+
+      const exp = document.getElementById("explanation");
+      exp.innerHTML = `<strong>${isCorrect ? "✅ Correct!" : "❌ Incorrect"}</strong><br>${q.explanation}`;
+      exp.classList.remove("hidden");
+
+      const btn = document.getElementById("action-btn");
+      btn.textContent = (currentQIndex === filteredList.length - 1) ? "View Summary" : "Next Question ➔";
+    } else {
+      nextQuizQuestion();
+    }
+  } else {
+    nextQuizQuestion();
+  }
+}
+
+function nextQuizQuestion() {
+  if (currentQIndex < filteredList.length - 1) {
+    currentQIndex++;
+    loadQuestion(currentQIndex);
+  } else {
+    showQuizSummary();
+  }
+}
+
+function showQuizSummary() {
+  const mode = document.getElementById("mode-selector").value;
+  if (mode === "exam") {
+    quizScore = 0;
+    filteredList.forEach((q, idx) => {
+      const ans = userAnswers[idx] || [];
+      if (arraysMatch(ans, q.correct)) {
+        quizScore++;
+        removeMissedQuestionId(q.id);
+      } else {
+        saveMissedQuestionId(q.id);
+      }
+    });
+  }
+
+  document.getElementById("quiz-card").classList.add("hidden");
+  const sum = document.getElementById("quiz-summary");
+  sum.classList.remove("hidden");
+
+  const pct = Math.round((quizScore / filteredList.length) * 100);
+  const pass = pct >= 75 ? "PASSED (ACAMS Target ≥ 75%)" : "NEEDS PRACTICE (< 75%)";
+  document.getElementById("final-stats").innerHTML = `
+    <strong>Score: ${quizScore} / ${filteredList.length} (${pct}%)</strong><br>
+    <span style="color: ${pct >= 75 ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${pass}</span>
+  `;
+}
+
+function arraysMatch(a, b) {
+  if (a.length !== b.length) return false;
+  return a.every((val, i) => val === b[i]);
 }
 
 // ==========================================
@@ -1159,7 +1290,7 @@ function switchTab(tab) {
 
 window.onload = () => {
   updateMissedUI();
-  filterQuestions(); // Initial random question load
+  filterQuestions();
 };
 </script>
 </body>
