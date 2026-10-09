@@ -320,6 +320,98 @@ const questionsData = [
     ],
     correct: [1],
     explanation: "Reference Page 233: Section 319(b) requires financial institutions to produce records within 120 hours (5 days) of a request by the appropriate federal banking agency."
+  },
+  {
+    id: 9,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A compliance analyst reviews an automated alert on a commercial account belonging to an import/export business. The analyst discovers that multiple wire transfers totaling $2.8 million were routed through accounts in known tax havens before arriving at the bank, and immediately funneled out to shell companies. Later that morning, an investigator from a federal law enforcement agency contacts the analyst by telephone, states that the account is under criminal surveillance, and verbally requests that the bank leave the account open for six months without filing a SAR so as not to tip off the target. What should the compliance officer do FIRST?",
+    options: [
+      "Comply immediately with the verbal request and disable all automated transaction monitoring on the account.",
+      "Inform the law enforcement officer that the request to keep the account open must be in writing on official letterhead with an explicit timeframe, while proceeding internally with the SAR evaluation process.",
+      "Immediately notify the customer that federal agents are investigating the account to prevent further illicit flows.",
+      "Close the account immediately without speaking to counsel or documenting the interaction."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 352 & 373: Verbal requests from law enforcement to keep accounts open are insufficient; financial institutions must obtain written 'keep-open' letters on official agency letterhead specifying the authorized duration (and retain them for at least 5 years). Furthermore, law enforcement cannot simply order a bank not to file a mandatory SAR, and notifying the client constitutes illegal tipping off."
+  },
+  {
+    id: 10,
+    domain: "Compliance Programs",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "A European commercial bank with a branch in New York is onboarding a new foreign corporate client headquartered in an offshore secrecy haven. The client is a Private Investment Company (PIC) whose beneficial ownership is held through a complex web of bearer shares and nominee directors. The prospective signatory is the adult son of a sitting foreign minister of defense. Under international standards and regulatory guidelines, which THREE controls must the bank enforce prior to approving this relationship?",
+    options: [
+      "Obtain senior management approval before establishing the business relationship.",
+      "Verify the identities of the ultimate beneficial owners (UBOs) behind the nominee arrangements rather than relying solely on nominee declarations.",
+      "Conduct Enhanced Due Diligence (EDD) to substantiate the customer's source of wealth and source of funds.",
+      "Waive transaction monitoring for the first six months to establish an organic baseline transaction profile.",
+      "Allow the account to operate anonymously under a numbered code without documenting the customer's legal identity."
+    ],
+    correct: [0, 1, 2],
+    explanation: "Reference Pages 33, 37, 165, & 241: High-risk accounts involving Politically Exposed Persons (PEPs) and their immediate family members (close associates), as well as opaque offshore PICs, require: (1) Senior management approval, (2) Identification and verification of the true UBOs behind bearer shares/nominees, and (3) EDD on source of wealth and funds. Numbered accounts may not conceal identity from compliance, and monitoring cannot be waived."
+  },
+  {
+    id: 11,
+    domain: "Risks and Methods",
+    type: "multiple",
+    instruction: "Select THREE answers",
+    question: "An AML transaction monitoring investigator is reviewing accounts associated with a commercial agricultural business operating in the US Southwest. Which THREE red flags from the review strongly suggest that the business may be engaged in HUMAN TRAFFICKING rather than human smuggling?",
+    options: [
+      "Frequent deductions from worker payroll records citing inflated, mandatory expenses for basic food, housing, and transportation.",
+      "A single third party escorts foreign employees to the branch to conduct transactions, translates for them, and retains physical possession of their identity cards.",
+      "Dozens of small, rapid wire transfers under $3,000 sent from disparate locations across the US to a single common beneficiary in a border city.",
+      "Payroll checks issued to employees are regularly endorsed, cashed at the bank, and immediately redeposited in bulk back into the employer's corporate account.",
+      "Repeated cash deposits into an account in one state followed by same-day cash withdrawals in a distant state via ATM cards."
+    ],
+    correct: [0, 1, 3],
+    explanation: "Reference Pages 341-344: Human trafficking centers on ongoing coercion and exploitation. Classic red flags include: excessive wage deductions for sustenance/housing, an escort holding worker IDs/controlling communication, and cashing worker payroll checks only to redeposit them back into the employer's account. Small wire transfers sent from across the US to a border city (Option C) and rapid multi-state ATM withdrawals (Option E / funnel accounts) are indicative of human smuggling or narcotics distribution."
+  },
+  {
+    id: 12,
+    domain: "Risks and Methods",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A bank in Miami notices that several local consumer electronics export businesses are receiving frequent incoming wire transfers from third-party business accounts with no apparent commercial relationship to electronics. Shortly thereafter, the funds are used to purchase large volumes of electronics that are shipped to South America. Colombian importers then sell these electronics locally in pesos and settle their debts through unlicensed currency brokers. What illicit scheme is taking place?",
+    options: [
+      "Black Market Peso Exchange (BMPE)",
+      "Reverse Ghost-Shipping Scheme",
+      "Securities Wash Trading",
+      "Bill Stuffing Placement Scheme"
+    ],
+    correct: [0],
+    explanation: "Reference Pages 107-110: This is the textbook operation of the Black Market Peso Exchange (BMPE). Illicit drug dollars in the US are deposited with or transferred through brokers to pay US exporters on behalf of foreign importers, who then sell the legitimate goods in Colombia for pesos, effectively remitting drug proceeds without moving physical cash across borders."
+  },
+  {
+    id: 13,
+    domain: "Compliance Programs",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "A compliance officer at a multinational banking group discovers that a branch in Country B is subject to local privacy laws that restrict the sharing of customer account data with foreign affiliates. However, group-wide AML policy requires the head office in Country A to maintain a consolidated, enterprise-wide customer database to monitor high-risk customers globally. How should the institution resolve this conflict?",
+    options: [
+      "Ignore Country B's national privacy laws because group AML policy always supersedes foreign legislation.",
+      "Confer with legal counsel and executive management to implement appropriate CDD measures that adhere to local laws while mitigating the money laundering risk without breaching host-country legal boundaries.",
+      "Immediately shut down the branch in Country B without consulting regulators or counsel.",
+      "Instruct branch staff in Country B to smuggle customer records out on encrypted thumb drives to maintain the global database."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 308-309: While financial institutions should strive to apply the higher standard of home vs. host countries and maintain consolidated oversight, they cannot breach local statutory laws. Where compliance standards conflict with local data protection or bank secrecy mandates, the institution must confer with its home office and legal counsel to determine compliant, alternative risk-mitigation measures."
+  },
+  {
+    id: 14,
+    domain: "Investigations",
+    type: "single",
+    instruction: "Choose 1 answer",
+    question: "Following a detailed 90-day internal investigation into a customer's corporate account, the AML investigative team determines that transactions amounting to $4.2 million lack economic justification and exhibit patterns of trade-based overinvoicing. The compliance committee authorizes the filing of a Suspicious Activity Report (SAR). The relationship manager argues that the customer is a 20-year client generating significant fee revenue and demands the account remain open. What is the appropriate next step regarding the account?",
+    options: [
+      "The bank must automatically terminate the client relationship within 24 hours of filing any SAR.",
+      "The bank should follow its established account closure policy, weighing the seriousness of the illicit conduct and the organization's legal and reputational exposure against remaining risks, independently of commercial revenue pressures.",
+      "Allow the relationship manager to override the compliance committee because revenue generation takes precedence during periods of low interest rates.",
+      "Disclose the SAR filing to the customer and request a written explanation to determine whether the account should remain open."
+    ],
+    correct: [1],
+    explanation: "Reference Pages 291 & 372: Regulators require that business interests never take precedence over compliance obligations. While filing a SAR does not create an automatic legal obligation to close an account immediately, the bank must follow documented account closure procedures, evaluating the severity of the conduct, repeat SAR history, and reputational risk. Disclosing the SAR is illegal (tipping off)."
   }
 ];
 
