@@ -1000,7 +1000,7 @@ function updateMissedUI() {
 }
 
 // ==========================================
-// 4. RANDOMIZATION / SHUFFLE UTILITIES
+// 4. RANDOMIZATION & BULLETPROOF PREPARATION
 // ==========================================
 // Fisher-Yates shuffle algorithm
 function shuffleArray(array) {
@@ -1011,13 +1011,32 @@ function shuffleArray(array) {
   return array;
 }
 
-// Deep clone & optionally shuffle choices without mutating original questionsData
-function prepareQuestion(q) {
-  return {
+// Safely prepares questions and filters out invalid/malformed entries
+function getSanitizedQuestionsPool() {
+  // 1. Flatten array in case questions were pasted inside another array [[...]]
+  const flattened = (typeof questionsData !== "undefined" && Array.isArray(questionsData)) 
+    ? questionsData.flat(Infinity) 
+    : [];
+
+  // 2. Filter only valid question objects that have an options array
+  const validQuestions = flattened.filter((q, index) => {
+    if (!q || typeof q !== "object") {
+      console.warn(`[CAMS App] Skipped non-object at index ${index}:`, q);
+      return false;
+    }
+    if (!Array.isArray(q.options)) {
+      console.warn(`[CAMS App] Skipped question missing 'options' array (ID: ${q.id || 'unknown'}):`, q);
+      return false;
+    }
+    return true;
+  });
+
+  // 3. Clone cleanly
+  return validQuestions.map(q => ({
     ...q,
     options: [...q.options],
-    correct: [...q.correct]
-  };
+    correct: Array.isArray(q.correct) ? [...q.correct] : [0]
+  }));
 }
 
 // ==========================================
@@ -1032,18 +1051,18 @@ let isAnswerSubmitted = false;
 function filterQuestions() {
   const selectedDomain = document.getElementById("domain-filter").value;
   const missedIds = getMissedQuestionIds();
+  const pool = getSanitizedQuestionsPool();
 
-  let pool = [];
   if (selectedDomain === "ALL") {
-    pool = questionsData.map(prepareQuestion);
+    filteredList = pool;
   } else if (selectedDomain === "MISSED") {
-    pool = questionsData.filter(q => missedIds.includes(q.id)).map(prepareQuestion);
+    filteredList = pool.filter(q => missedIds.includes(q.id));
   } else {
-    pool = questionsData.filter(q => q.domain === selectedDomain).map(prepareQuestion);
+    filteredList = pool.filter(q => q.domain === selectedDomain);
   }
 
-  // Scramble the question order so it NEVER always starts with ID 1
-  filteredList = shuffleArray(pool);
+  // Scramble question order so it does not always start with ID 1
+  filteredList = shuffleArray(filteredList);
   restartQuiz();
 }
 
@@ -1052,178 +1071,13 @@ function restartQuiz() {
   userAnswers = {};
   quizScore = 0;
   isAnswerSubmitted = false;
-  
-  // Reshuffle every time restart is triggered
+
+  // Fresh reshuffle on every restart
   shuffleArray(filteredList);
 
   document.getElementById("quiz-card").classList.remove("hidden");
   document.getElementById("quiz-summary").classList.add("hidden");
   loadQuestion(0);
-}
-
-function loadQuestion(index) {
-  if (filteredList.length === 0) {
-    document.getElementById("q-domain").textContent = "Empty";
-    document.getElementById("q-type").textContent = "-";
-    document.getElementById("q-text").textContent = "No questions found matching this filter.";
-    document.getElementById("q-options").innerHTML = "";
-    document.getElementById("action-btn").classList.add("hidden");
-    document.getElementById("explanation").classList.add("hidden");
-    document.getElementById("q-progress-text").textContent = "0 of 0";
-    document.getElementById("quiz-progress").style.width = "0%";
-    return;
-  }
-
-  isAnswerSubmitted = false;
-  document.getElementById("action-btn").classList.remove("hidden");
-  const q = filteredList[index];
-
-  const missedIds = getMissedQuestionIds();
-  const isMissed = missedIds.includes(q.id);
-
-  // Displays Domain, Original Question ID, and Review Badge
-  document.getElementById("q-domain").innerHTML = `
-    ${q.domain} 
-    <span class="badge" style="background: #e4e7eb; color: #2d3436; margin-left:6px;">ID #${q.id}</span>
-    ${isMissed ? '<span class="badge badge-missed" style="margin-left:6px;">Needs Review</span>' : ''}
-  `;
-  document.getElementById("q-type").textContent = q.instruction;
-  document.getElementById("q-text").textContent = `${index + 1}. ${q.question}`;
-  document.getElementById("q-progress-text").textContent = `Question ${index + 1} of ${filteredList.length}`;
-  document.getElementById("quiz-progress").style.width = `${((index + 1) / filteredList.length) * 100}%`;
-
-  const explanationBox = document.getElementById("explanation");
-  explanationBox.classList.add("hidden");
-
-  const container = document.getElementById("q-options");
-  container.innerHTML = "";
-
-  const inputType = q.type === "multiple" ? "checkbox" : "radio";
-
-  q.options.forEach((opt, idx) => {
-    const div = document.createElement("div");
-    div.className = "option";
-    div.id = `opt-${idx}`;
-
-    const input = document.createElement("input");
-    input.type = inputType;
-    input.name = "quiz-radio";
-    input.value = idx;
-
-    div.addEventListener("click", () => {
-      if (isAnswerSubmitted && document.getElementById("mode-selector").value === "practice") return;
-      if (q.type === "single") {
-        document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
-        div.classList.add("selected");
-        input.checked = true;
-      } else {
-        input.checked = !input.checked;
-        div.classList.toggle("selected", input.checked);
-      }
-    });
-
-    const label = document.createElement("label");
-    label.textContent = opt;
-    label.style.cursor = "pointer";
-
-    div.appendChild(input);
-    div.appendChild(label);
-    container.appendChild(div);
-  });
-
-  const mode = document.getElementById("mode-selector").value;
-  const btn = document.getElementById("action-btn");
-  btn.textContent = (mode === "practice") ? "Submit Answer" : (index === filteredList.length - 1 ? "Finish Exam" : "Next Question");
-}
-
-function handleQuizAction() {
-  const q = filteredList[currentQIndex];
-  const mode = document.getElementById("mode-selector").value;
-
-  const checkedNodes = Array.from(document.querySelectorAll('input[name="quiz-radio"]:checked'));
-  const selected = checkedNodes.map(n => parseInt(n.value)).sort();
-
-  if (selected.length === 0) {
-    alert("Please select your answer(s) first.");
-    return;
-  }
-
-  userAnswers[currentQIndex] = selected;
-
-  if (mode === "practice") {
-    if (!isAnswerSubmitted) {
-      isAnswerSubmitted = true;
-      const isCorrect = arraysMatch(selected, q.correct);
-
-      if (isCorrect) {
-        quizScore++;
-        if (getMissedQuestionIds().includes(q.id)) {
-          removeMissedQuestionId(q.id);
-        }
-      } else {
-        saveMissedQuestionId(q.id);
-      }
-
-      // Visual styling for correct/incorrect options
-      q.options.forEach((_, idx) => {
-        const el = document.getElementById(`opt-${idx}`);
-        if (q.correct.includes(idx)) el.classList.add("correct");
-        else if (selected.includes(idx)) el.classList.add("incorrect");
-      });
-
-      const exp = document.getElementById("explanation");
-      exp.innerHTML = `<strong>${isCorrect ? "✅ Correct!" : "❌ Incorrect"}</strong><br>${q.explanation}`;
-      exp.classList.remove("hidden");
-
-      const btn = document.getElementById("action-btn");
-      btn.textContent = (currentQIndex === filteredList.length - 1) ? "View Summary" : "Next Question ➔";
-    } else {
-      nextQuizQuestion();
-    }
-  } else {
-    nextQuizQuestion();
-  }
-}
-
-function nextQuizQuestion() {
-  if (currentQIndex < filteredList.length - 1) {
-    currentQIndex++;
-    loadQuestion(currentQIndex);
-  } else {
-    showQuizSummary();
-  }
-}
-
-function showQuizSummary() {
-  const mode = document.getElementById("mode-selector").value;
-  if (mode === "exam") {
-    quizScore = 0;
-    filteredList.forEach((q, idx) => {
-      const ans = userAnswers[idx] || [];
-      if (arraysMatch(ans, q.correct)) {
-        quizScore++;
-        removeMissedQuestionId(q.id);
-      } else {
-        saveMissedQuestionId(q.id);
-      }
-    });
-  }
-
-  document.getElementById("quiz-card").classList.add("hidden");
-  const sum = document.getElementById("quiz-summary");
-  sum.classList.remove("hidden");
-
-  const pct = Math.round((quizScore / filteredList.length) * 100);
-  const pass = pct >= 75 ? "PASSED (ACAMS Target ≥ 75%)" : "NEEDS PRACTICE (< 75%)";
-  document.getElementById("final-stats").innerHTML = `
-    <strong>Score: ${quizScore} / ${filteredList.length} (${pct}%)</strong><br>
-    <span style="color: ${pct >= 75 ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${pass}</span>
-  `;
-}
-
-function arraysMatch(a, b) {
-  if (a.length !== b.length) return false;
-  return a.every((val, i) => val === b[i]);
 }
 
 // ==========================================
