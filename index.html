@@ -1000,9 +1000,30 @@ function updateMissedUI() {
 }
 
 // ==========================================
-// 4. QUIZ ENGINE (VIEW 1)
+// 4. RANDOMIZATION / SHUFFLE UTILITIES
 // ==========================================
-let filteredList = [...questionsData];
+// Fisher-Yates shuffle algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Deep clone & optionally shuffle choices without mutating original questionsData
+function prepareQuestion(q) {
+  return {
+    ...q,
+    options: [...q.options],
+    correct: [...q.correct]
+  };
+}
+
+// ==========================================
+// 5. QUIZ ENGINE (RANDOMIZED)
+// ==========================================
+let filteredList = [];
 let currentQIndex = 0;
 let userAnswers = {};
 let quizScore = 0;
@@ -1012,13 +1033,17 @@ function filterQuestions() {
   const selectedDomain = document.getElementById("domain-filter").value;
   const missedIds = getMissedQuestionIds();
 
+  let pool = [];
   if (selectedDomain === "ALL") {
-    filteredList = [...questionsData];
+    pool = questionsData.map(prepareQuestion);
   } else if (selectedDomain === "MISSED") {
-    filteredList = questionsData.filter(q => missedIds.includes(q.id));
+    pool = questionsData.filter(q => missedIds.includes(q.id)).map(prepareQuestion);
   } else {
-    filteredList = questionsData.filter(q => q.domain === selectedDomain);
+    pool = questionsData.filter(q => q.domain === selectedDomain).map(prepareQuestion);
   }
+
+  // Scramble the question order so it NEVER always starts with ID 1
+  filteredList = shuffleArray(pool);
   restartQuiz();
 }
 
@@ -1027,6 +1052,10 @@ function restartQuiz() {
   userAnswers = {};
   quizScore = 0;
   isAnswerSubmitted = false;
+  
+  // Reshuffle every time restart is triggered
+  shuffleArray(filteredList);
+
   document.getElementById("quiz-card").classList.remove("hidden");
   document.getElementById("quiz-summary").classList.add("hidden");
   loadQuestion(0);
@@ -1052,7 +1081,12 @@ function loadQuestion(index) {
   const missedIds = getMissedQuestionIds();
   const isMissed = missedIds.includes(q.id);
 
-  document.getElementById("q-domain").innerHTML = `${q.domain} ${isMissed ? '<span class="badge badge-missed" style="margin-left:6px;">Needs Review</span>' : ''}`;
+  // Displays Domain, Original Question ID, and Review Badge
+  document.getElementById("q-domain").innerHTML = `
+    ${q.domain} 
+    <span class="badge" style="background: #e4e7eb; color: #2d3436; margin-left:6px;">ID #${q.id}</span>
+    ${isMissed ? '<span class="badge badge-missed" style="margin-left:6px;">Needs Review</span>' : ''}
+  `;
   document.getElementById("q-type").textContent = q.instruction;
   document.getElementById("q-text").textContent = `${index + 1}. ${q.question}`;
   document.getElementById("q-progress-text").textContent = `Question ${index + 1} of ${filteredList.length}`;
@@ -1123,7 +1157,6 @@ function handleQuizAction() {
 
       if (isCorrect) {
         quizScore++;
-        // If reviewing missed items, remove from missed list upon correct answer
         if (getMissedQuestionIds().includes(q.id)) {
           removeMissedQuestionId(q.id);
         }
@@ -1131,7 +1164,7 @@ function handleQuizAction() {
         saveMissedQuestionId(q.id);
       }
 
-      // Visual styling
+      // Visual styling for correct/incorrect options
       q.options.forEach((_, idx) => {
         const el = document.getElementById(`opt-${idx}`);
         if (q.correct.includes(idx)) el.classList.add("correct");
@@ -1194,7 +1227,7 @@ function arraysMatch(a, b) {
 }
 
 // ==========================================
-// 5. REVERSE GLOSSARY ENGINE (VIEW 2)
+// 6. REVERSE GLOSSARY ENGINE
 // ==========================================
 let currentGlossaryTarget = null;
 let glossaryTotal = 0;
@@ -1205,19 +1238,17 @@ function loadNextGlossaryPrompt() {
   glossaryAnswered = false;
   document.getElementById("glossary-explanation").classList.add("hidden");
 
-  // Pick random definition
   const randIndex = Math.floor(Math.random() * glossaryData.length);
   currentGlossaryTarget = glossaryData[randIndex];
 
   document.getElementById("glossary-definition").textContent = `"${currentGlossaryTarget.definition}"`;
 
-  // Pick 3 distractors
   let options = [currentGlossaryTarget.term];
   while (options.length < 4) {
     const distractor = glossaryData[Math.floor(Math.random() * glossaryData.length)].term;
     if (!options.includes(distractor)) options.push(distractor);
   }
-  options.sort(() => Math.random() - 0.5); // Shuffle
+  shuffleArray(options);
 
   const container = document.getElementById("glossary-options");
   container.innerHTML = "";
@@ -1238,18 +1269,15 @@ function loadNextGlossaryPrompt() {
         glossaryCorrect++;
       } else {
         div.classList.add("incorrect");
-        // Highlight correct option
         Array.from(container.children).forEach(child => {
           if (child.textContent === currentGlossaryTarget.term) child.classList.add("correct");
         });
       }
 
-      // Show explanation
       const exp = document.getElementById("glossary-explanation");
-      exp.innerHTML = `<strong>${isRight ? "✅ Spot On!" : "❌ Correct Term:" + " " + currentGlossaryTarget.term}</strong><br>Reference: ${currentGlossaryTarget.ref} in CAMS Study Guide.`;
+      exp.innerHTML = `<strong>${isRight ? "✅ Spot On!" : "❌ Correct Term: " + currentGlossaryTarget.term}</strong><br>Reference: ${currentGlossaryTarget.ref} in CAMS Study Guide.`;
       exp.classList.remove("hidden");
 
-      // Update stat pill
       const pct = Math.round((glossaryCorrect / glossaryTotal) * 100);
       document.getElementById("glossary-score").textContent = `${glossaryCorrect} / ${glossaryTotal} (${pct}%)`;
     });
@@ -1259,7 +1287,7 @@ function loadNextGlossaryPrompt() {
 }
 
 // ==========================================
-// 6. TABS NAVIGATION
+// 7. TABS NAVIGATION & INITIALIZATION
 // ==========================================
 function switchTab(tab) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -1275,10 +1303,9 @@ function switchTab(tab) {
   }
 }
 
-// Init
 window.onload = () => {
   updateMissedUI();
-  filterQuestions();
+  filterQuestions(); // Initial random question load
 };
 </script>
 </body>
